@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
 :root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --edge: #27272a;
+  --pattern-foreground: rgba(255, 255, 255, 0.08);
+  --pattern-dot: rgba(255, 255, 255, 0.12);
+}
+
+.light {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #09090b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --edge: #e4e4e7;
+  --pattern-foreground: rgba(0, 0, 0, 0.06);
+  --pattern-dot: rgba(0, 0, 0, 0.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.light {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+/* Screen Line Utilities (Prathadox Architecture) */
+.border-edge {
+  border-color: var(--edge);
+}
+
+.screen-line-before {
+  position: relative;
+}
+.screen-line-before::before {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  right: -100vw;
+  top: 0;
+  height: 1px;
+  background-color: var(--edge);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.screen-line-after {
+  position: relative;
+}
+.screen-line-after::after {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  right: -100vw;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--edge);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hatch-pattern {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--pattern-foreground) 0,
+    var(--pattern-foreground) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(var(--pattern-dot) 1px, transparent 0);
+  background-size: 12px 12px;
+}
+
+/* Precision scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--edge);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
