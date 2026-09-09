@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Overview from "@/components/Overview";
+import MovingText from "@/components/MovingText";
 import SocialLinks from "@/components/SocialLinks";
 import About from "@/components/About";
 import Contributions from "@/components/Contributions";
@@ -21,6 +22,9 @@ export default function Home() {
         {/* Personal Overview */}
         <Overview />
 
+        {/* Moving Text Ticker near Hero */}
+        <MovingText />
+
         {/* Social Links Grid */}
         <SocialLinks />
 
@@ -36,7 +40,7 @@ export default function Home() {
         {/* Experience Timeline */}
         <Experience />
 
-        {/* Education */}
+        {/* Education Timeline */}
         <Education />
 
         {/* Projects Editorial List */}

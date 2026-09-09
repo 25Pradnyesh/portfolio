@@ -27,16 +27,23 @@ export interface ExperienceItem {
 }
 
 export interface EducationItem {
+  id: string;
+  number: string;
+  institution: string;
   degree: string;
-  field: string;
-  university: string;
   period: string;
-  college: string;
 }
 
 export interface SkillCategory {
   category: string;
   skills: string[];
+}
+
+export interface SocialLinkItem {
+  name: string;
+  url: string;
+  handle: string;
+  type?: "email" | "external" | "resume";
 }
 
 export interface PortfolioData {
@@ -53,19 +60,24 @@ export interface PortfolioData {
       github: string;
       linkedin: string;
       x: string;
+      cal: string;
+      resume: string;
     };
   };
+  socialLinks: SocialLinkItem[];
   about: {
     paragraphs: string[];
   };
   skills: SkillCategory[];
   experience: ExperienceItem[];
-  education: EducationItem;
+  education: EducationItem[];
   projects: Project[];
   achievements: AchievementItem[];
   contact: {
     headline: string;
     prompt: string;
+    calUrl: string;
+    resumeUrl: string;
   };
   footer: {
     name: string;
@@ -84,14 +96,54 @@ export const portfolioData: PortfolioData = {
     email: "workspace.pradnyesh@gmail.com",
     status: "Currently building",
     currentlyBuildingText:
-      "Building and experimenting across AI, full-stack development and product engineering.",
+      "Building and experimenting across AI, full-stack development, product engineering, generative AI, AI agents, and intelligent interfaces.",
     profileImage: "/pfp.jpeg",
     socials: {
       github: "https://github.com/25Pradnyesh",
       linkedin: "https://www.linkedin.com/in/pradnyesh-s/",
       x: "https://x.com/Pradnyesh_25",
+      cal: "https://cal.com/pradnyesh",
+      resume: "/resume.pdf",
     },
   },
+  socialLinks: [
+    {
+      name: "Email",
+      url: "mailto:workspace.pradnyesh@gmail.com",
+      handle: "workspace.pradnyesh@gmail.com",
+      type: "email",
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/25Pradnyesh",
+      handle: "@25Pradnyesh",
+      type: "external",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/pradnyesh-s/",
+      handle: "in/pradnyesh-s",
+      type: "external",
+    },
+    {
+      name: "X",
+      url: "https://x.com/Pradnyesh_25",
+      handle: "@Pradnyesh_25",
+      type: "external",
+    },
+    {
+      name: "Cal.com",
+      url: "https://cal.com/pradnyesh",
+      handle: "cal.com/pradnyesh",
+      type: "external",
+    },
+    {
+      name: "Resume",
+      url: "/resume.pdf",
+      handle: "resume.pdf",
+      type: "resume",
+    },
+  ],
   about: {
     paragraphs: [
       "I'm an engineering student focused on building products across AI, full-stack development and emerging technologies.",
@@ -163,13 +215,29 @@ export const portfolioData: PortfolioData = {
       tags: ["Content Production", "Visual Storytelling", "Editing"],
     },
   ],
-  education: {
-    degree: "B.E.",
-    field: "Electronics & Computer Engineering",
-    university: "Savitribai Phule Pune University",
-    period: "2023 — 2027",
-    college: "Zeal College of Engineering, Narhe, Pune",
-  },
+  education: [
+    {
+      number: "01",
+      id: "sppu-be",
+      institution: "Savitribai Phule Pune University (SPPU)",
+      degree: "B.E. — Electronics & Computer Engineering",
+      period: "2023 — 2027",
+    },
+    {
+      number: "02",
+      id: "bk-birla-12",
+      institution: "B.K. Birla College of Arts, Science & Commerce",
+      degree: "12th Grade",
+      period: "2021 — 2023",
+    },
+    {
+      number: "03",
+      id: "skcg-10",
+      institution: "Smt. Kantaben Chandulal Gandhi English School",
+      degree: "10th Grade",
+      period: "2020 — 2021",
+    },
+  ],
   projects: [
     {
       number: "PROJECT 01",
@@ -267,9 +335,11 @@ export const portfolioData: PortfolioData = {
     },
   ],
   contact: {
-    headline: "Let's build something.",
+    headline: "LET'S BUILD SOMETHING.",
     prompt:
       "Have an interesting project, hackathon, collaboration or opportunity?",
+    calUrl: "https://cal.com/pradnyesh",
+    resumeUrl: "/resume.pdf",
   },
   footer: {
     name: "PRADNYESH S",

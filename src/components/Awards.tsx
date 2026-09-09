@@ -1,13 +1,27 @@
 "use client";
 
-import { Trophy, Award } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Awards() {
   const { achievements } = portfolioData;
 
+  const getEmoji = (badge: string) => {
+    switch (badge.toUpperCase()) {
+      case "WINNER":
+        return "🏆";
+      case "HACKATHON":
+        return "🚀";
+      case "DEMO DAY":
+        return "⚡";
+      case "STARTUP WEEKEND":
+        return "🎤";
+      default:
+        return "✨";
+    }
+  };
+
   return (
-    <section className="border-x border-b border-edge">
+    <section id="awards" className="border-x border-b border-edge">
       {/* Panel Header */}
       <div className="px-4 sm:px-5 py-3 border-b border-edge flex items-center justify-between">
         <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--foreground)]">
@@ -29,19 +43,18 @@ export default function Awards() {
                 : "hover:bg-[var(--muted)]/40"
             }`}
           >
-            {/* Top row: Badge + Event */}
+            {/* Top row: Badge with emoji + Event */}
             <div className="flex items-center justify-between gap-2">
-              {item.isWinner ? (
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono text-[11px] font-semibold tracking-wider uppercase">
-                  <Trophy className="size-3 text-emerald-400" />
-                  <span>{item.badge}</span>
-                </div>
-              ) : (
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[var(--muted)] border border-edge text-[var(--muted-foreground)] font-mono text-[11px] uppercase">
-                  <Award className="size-3" />
-                  <span>{item.badge}</span>
-                </div>
-              )}
+              <div
+                className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-mono text-[11px] uppercase ${
+                  item.isWinner
+                    ? "bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-semibold"
+                    : "bg-[var(--muted)] border border-edge text-[var(--muted-foreground)]"
+                }`}
+              >
+                <span className="text-xs select-none">{getEmoji(item.badge)}</span>
+                <span>{item.badge}</span>
+              </div>
 
               <span className="font-mono text-xs text-[var(--muted-foreground)]">
                 {item.event}

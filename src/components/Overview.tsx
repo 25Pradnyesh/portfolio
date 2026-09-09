@@ -67,7 +67,8 @@ export default function Overview() {
               alt={personal.name}
               fill
               sizes="(max-width: 640px) 112px, 144px"
-              className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-300"
+              className="object-cover object-center"
+              style={{ filter: "none", opacity: 1 }}
               priority
             />
           </div>
