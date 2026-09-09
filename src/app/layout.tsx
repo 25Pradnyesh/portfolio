@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#080808",
+  themeColor: "#0a0a0b",
   width: "device-width",
   initialScale: 1,
 };
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://pradnyesh.dev"),
   title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
   description:
-    "I build AI-powered products, full-stack systems, and experimental ideas from zero to shipped. Portfolio of Pradnyesh S.",
+    "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
   keywords: [
     "Pradnyesh S",
     "AI Engineer",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
     description:
-      "I build AI-powered products, full-stack systems, and experimental ideas from zero to shipped.",
+      "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
     type: "website",
     locale: "en_US",
     images: [
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
     description:
-      "I build AI-powered products, full-stack systems, and experimental ideas from zero to shipped.",
+      "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
     creator: "@Pradnyesh_25",
     images: ["/pfp.jpeg"],
   },
@@ -76,12 +76,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body
-        suppressHydrationWarning
-        className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased"
-      >
+      <body suppressHydrationWarning className="min-h-screen antialiased">
         {children}
       </body>
     </html>

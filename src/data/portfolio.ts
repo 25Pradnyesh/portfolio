@@ -1,5 +1,4 @@
 export interface Project {
-  number: string;
   id: string;
   title: string;
   period?: string;
@@ -11,12 +10,10 @@ export interface Project {
 }
 
 export interface AchievementItem {
-  badge: "WINNER" | "HACKATHON" | "DEMO DAY" | "STARTUP WEEKEND";
+  emoji: string;
+  type: string;
   event: string;
   project: string;
-  detail: string;
-  stack?: string;
-  isWinner?: boolean;
 }
 
 export interface ExperienceItem {
@@ -28,7 +25,6 @@ export interface ExperienceItem {
 
 export interface EducationItem {
   id: string;
-  number: string;
   institution: string;
   degree: string;
   period: string;
@@ -44,6 +40,10 @@ export interface SocialLinkItem {
   url: string;
   handle: string;
   type?: "email" | "external" | "resume";
+}
+
+export interface InterestItem {
+  label: string;
 }
 
 export interface PortfolioData {
@@ -73,30 +73,30 @@ export interface PortfolioData {
   education: EducationItem[];
   projects: Project[];
   achievements: AchievementItem[];
+  interests: InterestItem[];
   contact: {
     headline: string;
     prompt: string;
     calUrl: string;
     resumeUrl: string;
   };
+  movingTextPhrases: string[];
   footer: {
     name: string;
-    title: string;
-    location: string;
     year: number;
   };
 }
 
 export const portfolioData: PortfolioData = {
   personal: {
-    name: "PRADNYESH S",
+    name: "Pradnyesh S",
     title: "AI Engineer & Full-Stack Developer",
     bio: "I build AI-powered products, full-stack systems, and experimental ideas from zero to shipped.",
     location: "Mumbai · Pune, India",
     email: "workspace.pradnyesh@gmail.com",
     status: "Currently building",
     currentlyBuildingText:
-      "Building and experimenting across AI, full-stack development, product engineering, generative AI, AI agents, and intelligent interfaces.",
+      "Building and experimenting across AI, full-stack development and product engineering.",
     profileImage: "/pfp.jpeg",
     socials: {
       github: "https://github.com/25Pradnyesh",
@@ -108,15 +108,21 @@ export const portfolioData: PortfolioData = {
   },
   socialLinks: [
     {
-      name: "Email",
-      url: "mailto:workspace.pradnyesh@gmail.com",
-      handle: "workspace.pradnyesh@gmail.com",
-      type: "email",
+      name: "X",
+      url: "https://x.com/Pradnyesh_25",
+      handle: "@Pradnyesh_25",
+      type: "external",
     },
     {
       name: "GitHub",
       url: "https://github.com/25Pradnyesh",
-      handle: "@25Pradnyesh",
+      handle: "25Pradnyesh",
+      type: "external",
+    },
+    {
+      name: "Cal.com",
+      url: "https://cal.com/pradnyesh",
+      handle: "cal.com/pradnyesh",
       type: "external",
     },
     {
@@ -126,16 +132,10 @@ export const portfolioData: PortfolioData = {
       type: "external",
     },
     {
-      name: "X",
-      url: "https://x.com/Pradnyesh_25",
-      handle: "@Pradnyesh_25",
-      type: "external",
-    },
-    {
-      name: "Cal.com",
-      url: "https://cal.com/pradnyesh",
-      handle: "cal.com/pradnyesh",
-      type: "external",
+      name: "Email",
+      url: "mailto:workspace.pradnyesh@gmail.com",
+      handle: "workspace.pradnyesh@gmail.com",
+      type: "email",
     },
     {
       name: "Resume",
@@ -146,7 +146,7 @@ export const portfolioData: PortfolioData = {
   ],
   about: {
     paragraphs: [
-      "I'm an engineering student focused on building products across AI, full-stack development and emerging technologies.",
+      "AI Engineer & Full-Stack Developer with hands-on experience building products across AI, full-stack development and emerging technologies.",
       "I enjoy taking vague ideas, turning them into working systems, and shipping them fast — from hackathon prototypes to independent products.",
       "Currently exploring AI engineering, intelligent interfaces, Web3 and product development.",
     ],
@@ -154,7 +154,7 @@ export const portfolioData: PortfolioData = {
   skills: [
     {
       category: "AI",
-      skills: ["Python", "GenAI", "LLMs", "AI APIs"],
+      skills: ["Python", "Generative AI", "LLMs", "AI APIs", "AI Agents"],
     },
     {
       category: "Frontend",
@@ -166,7 +166,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       category: "Product",
-      skills: ["Figma", "UI/UX", "Prototyping", "Design Systems"],
+      skills: ["Figma", "UI/UX", "Prototyping"],
     },
     {
       category: "Web3",
@@ -181,13 +181,15 @@ export const portfolioData: PortfolioData = {
     {
       role: "Software Development",
       duration: "~1–1.5 years",
-      description: "Hands-on product development and independent projects.",
+      description:
+        "Hands-on product development and independent projects.",
       tags: ["TypeScript", "Next.js", "System Architecture", "Full-Stack"],
     },
     {
       role: "AI / GenAI",
       duration: "~1 year",
-      description: "Practical experience building AI-powered products and prototypes.",
+      description:
+        "Practical experience building AI-powered products and prototypes.",
       tags: ["LLMs", "FastAPI", "Prompt Engineering", "Python", "AI APIs"],
     },
     {
@@ -199,14 +201,20 @@ export const portfolioData: PortfolioData = {
     {
       role: "Web3",
       duration: "~6–12 months",
-      description: "Web3 ecosystems, smart-contract/product experiences and hackathons.",
+      description:
+        "Web3 ecosystems, smart-contract/product experiences and hackathons.",
       tags: ["Smart Contracts", "Ecosystems", "Web3 UI", "Hackathons"],
     },
     {
       role: "UI/UX",
       duration: "~1–1.5 years",
       description: "Product interfaces, Figma, prototyping and design systems.",
-      tags: ["Figma", "Design Systems", "Prototyping", "Information Architecture"],
+      tags: [
+        "Figma",
+        "Design Systems",
+        "Prototyping",
+        "Information Architecture",
+      ],
     },
     {
       role: "Video / Content",
@@ -217,52 +225,44 @@ export const portfolioData: PortfolioData = {
   ],
   education: [
     {
-      number: "01",
       id: "sppu-be",
       institution: "Savitribai Phule Pune University (SPPU)",
       degree: "B.E. — Electronics & Computer Engineering",
-      period: "2023 — 2027",
+      period: "2023 – 2027",
     },
     {
-      number: "02",
       id: "bk-birla-12",
       institution: "B.K. Birla College of Arts, Science & Commerce",
       degree: "12th Grade",
-      period: "2021 — 2023",
+      period: "2021 – 2023",
     },
     {
-      number: "03",
       id: "skcg-10",
       institution: "Smt. Kantaben Chandulal Gandhi English School",
       degree: "10th Grade",
-      period: "2020 — 2021",
+      period: "2020 – 2021",
     },
   ],
   projects: [
     {
-      number: "PROJECT 01",
       id: "travel-ai",
       title: "Travel AI",
       period: "2024",
       description:
-        "AI-powered travel-location extraction system that processes Instagram travel content and organizes discovered locations into Google Maps.",
+        "AI-powered system that extracts travel locations from Instagram content and organizes discovered locations into Google Maps.",
       technologies: ["Next.js", "Python", "FastAPI", "AI", "Google Maps"],
       githubUrl: "https://github.com/25Pradnyesh/Travel-AI-",
-      projectUrl: "https://github.com/25Pradnyesh/Travel-AI-",
     },
     {
-      number: "PROJECT 02",
       id: "vertifarm",
       title: "VertiFarm",
       period: "2024",
       description:
-        "Smart vertical farming management platform for monitoring environmental conditions, sensors, alerts and crop health.",
+        "Smart vertical farming management system for environmental monitoring, sensors, alerts and crop health.",
       technologies: ["React", "IoT", "AI", "Dashboard", "UX"],
       githubUrl: "https://github.com/25Pradnyesh/vertifarm-app",
-      projectUrl: "https://github.com/25Pradnyesh/vertifarm-app",
     },
     {
-      number: "PROJECT 03",
       id: "design-resource-vault",
       title: "Design Resource Vault",
       period: "2024",
@@ -270,28 +270,22 @@ export const portfolioData: PortfolioData = {
         "Visual-first platform for discovering and organizing high-quality design resources.",
       technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
       githubUrl: "https://github.com/25Pradnyesh/Design-Resource-Vault",
-      projectUrl: "https://github.com/25Pradnyesh/Design-Resource-Vault",
     },
     {
-      number: "PROJECT 04",
       id: "penguin-protocol",
       title: "Penguin Protocol",
       period: "2024",
       achievement: "Winner — Monad Blitz Pune",
-      description:
-        "Decentralized AI Investment Syndicate built to automate and coordinate on-chain liquidity & AI-driven investment strategies.",
+      description: "Decentralized AI Investment Syndicate.",
       technologies: ["Monad", "Web3", "Smart Contracts", "AI Agents"],
-      githubUrl: "https://github.com/25Pradnyesh",
-      projectUrl: "https://github.com/25Pradnyesh",
     },
     {
-      number: "PROJECT 05",
       id: "reclaim",
       title: "Reclaim",
       period: "2024",
-      achievement: "Built in 6 days — WeMakeDevs FutureStack GenAI Hackathon",
+      achievement: "WeMakeDevs FutureStack GenAI Hackathon",
       description:
-        "AI-powered phone addiction management application built and shipped in 6 days during the hackathon sprint.",
+        "AI-powered phone addiction management application. Built and shipped in 6 days during the hackathon.",
       technologies: [
         "Next.js 14",
         "Tailwind",
@@ -299,40 +293,49 @@ export const portfolioData: PortfolioData = {
         "Cerebras API",
         "Llama",
       ],
-      githubUrl: "https://github.com/25Pradnyesh",
-      projectUrl: "https://github.com/25Pradnyesh",
     },
   ],
   achievements: [
     {
-      badge: "WINNER",
+      emoji: "🏆",
+      type: "Winner",
       event: "Monad Blitz Pune",
       project: "Penguin Protocol",
-      detail: "Decentralized AI Investment Syndicate",
-      isWinner: true,
     },
     {
-      badge: "HACKATHON",
+      emoji: "🚀",
+      type: "Hackathon",
       event: "WeMakeDevs FutureStack GenAI Hackathon",
       project: "Reclaim",
-      detail: "Built and shipped in 6 days",
-      stack: "Next.js 14 · Tailwind · Supabase · Cerebras API + Llama",
-      isWinner: false,
     },
     {
-      badge: "DEMO DAY",
+      emoji: "⚡",
+      type: "Demo Day",
       event: "Starknet Outpost",
-      project: "Web3 Product Demonstration",
-      detail: "Decentralized ecosystem showcase",
-      isWinner: false,
+      project: "",
     },
     {
-      badge: "STARTUP WEEKEND",
+      emoji: "🎤",
+      type: "Startup Weekend",
       event: "AIBoomi · Pune",
       project: "VoiceAds",
-      detail: "AI voice advertising MVP",
-      isWinner: false,
     },
+  ],
+  interests: [
+    { label: "AI Engineering" },
+    { label: "Generative AI" },
+    { label: "AI Agents" },
+    { label: "Foundation Models" },
+    { label: "Web3" },
+    { label: "Product Design" },
+    { label: "Creative Technology" },
+  ],
+  movingTextPhrases: [
+    "BUILDING AI PRODUCTS",
+    "SHIPPING FULL-STACK SYSTEMS",
+    "EXPERIMENTING WITH NEW IDEAS",
+    "BUILDING INTELLIGENT PRODUCTS",
+    "AI × SOFTWARE × PRODUCT",
   ],
   contact: {
     headline: "LET'S BUILD SOMETHING.",
@@ -342,9 +345,7 @@ export const portfolioData: PortfolioData = {
     resumeUrl: "/resume.pdf",
   },
   footer: {
-    name: "PRADNYESH S",
-    title: "AI Engineer & Full-Stack Developer",
-    location: "Mumbai · Pune, India",
-    year: 2026,
+    name: "Pradnyesh S",
+    year: 2025,
   },
 };

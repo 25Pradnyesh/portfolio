@@ -9,20 +9,21 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Awards from "@/components/Awards";
-import CurrentlyBuilding from "@/components/CurrentlyBuilding";
+import Interests from "@/components/Interests";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+    <div className="min-h-screen">
       <Navbar />
 
-      <main className="mx-auto md:max-w-3xl px-2 sm:px-4 pt-2">
-        {/* Personal Overview */}
+      <main className="mx-auto max-w-[768px] px-0">
+        {/* Profile / Hero Overview */}
         <Overview />
 
-        {/* Moving Text Ticker near Hero */}
+        {/* Moving Text Ticker */}
         <MovingText />
 
         {/* Social Links Grid */}
@@ -31,33 +32,36 @@ export default function Home() {
         {/* About Section */}
         <About />
 
-        {/* GitHub Contributions Activity */}
+        {/* GitHub Contributions */}
         <Contributions />
 
-        {/* Technology Stack */}
+        {/* Stack / Technologies */}
         <Stack />
 
-        {/* Experience Timeline */}
+        {/* Experience */}
         <Experience />
 
-        {/* Education Timeline */}
+        {/* Education */}
         <Education />
 
-        {/* Projects Editorial List */}
+        {/* Projects */}
         <Projects />
 
         {/* Honors & Awards */}
         <Awards />
 
-        {/* Currently Building */}
-        <CurrentlyBuilding />
+        {/* Interests / Exploring */}
+        <Interests />
 
-        {/* Contact Section */}
+        {/* Contact */}
         <Contact />
 
         {/* Footer */}
         <Footer />
       </main>
+
+      {/* Scroll to Top */}
+      <ScrollToTop />
     </div>
   );
 }

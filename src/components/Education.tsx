@@ -1,58 +1,46 @@
 "use client";
 
+import { GraduationCap, ChevronsUpDown } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Education() {
   const { education } = portfolioData;
 
   return (
-    <section id="education" className="border-x border-b border-edge">
-      {/* Panel Header */}
-      <div className="px-4 sm:px-5 py-3 border-b border-edge flex items-center justify-between">
-        <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--foreground)]">
+    <section id="education" className="screen-line-bottom">
+      {/* Section Header */}
+      <div className="px-4 sm:px-5 py-3.5 border-b border-[var(--edge)] screen-line-bottom flex items-center gap-2">
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--foreground)]" />
+        </span>
+        <h2 className="text-base font-semibold tracking-tight text-[var(--foreground)]">
           Education
         </h2>
-        <span className="font-mono text-xs text-[var(--muted-foreground)]">
-          / academic
-        </span>
       </div>
 
-      {/* Editorial Timeline / List */}
-      <div className="divide-y divide-edge">
-        {education.map((item) => {
-          // Determine top title vs subtitle
-          const isHigherDegree = item.number === "01";
-          const title = isHigherDegree ? item.degree : item.institution;
-          const subtitle = isHigherDegree ? item.institution : item.degree;
-
-          return (
-            <div
-              key={item.id}
-              className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 hover:bg-[var(--muted)]/40 transition-colors"
-            >
-              <div className="flex items-start gap-3">
-                <span className="font-mono text-xs font-semibold text-[var(--muted-foreground)] pt-0.5 select-none shrink-0">
-                  {item.number}
-                </span>
-
-                <div className="space-y-1">
-                  <h3 className="font-mono text-sm font-semibold text-[var(--foreground)]">
-                    {title}
-                  </h3>
-                  <p className="text-sm text-[var(--muted-foreground)]">
-                    {subtitle}
-                  </p>
-                </div>
+      {/* Education Items */}
+      <div className="border-b border-[var(--edge)]">
+        {education.map((item) => (
+          <div
+            key={item.id}
+            className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-[var(--edge)] last:border-b-0 hover:bg-[var(--muted)]/40 transition-colors group"
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="flex size-6 shrink-0 items-center justify-center rounded border border-[var(--edge)] bg-[var(--muted)] text-[var(--muted-foreground)]">
+                <GraduationCap className="size-3" />
               </div>
-
-              <div className="pl-7 sm:pl-0 shrink-0">
-                <span className="font-mono text-xs text-[var(--muted-foreground)]">
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold text-[var(--foreground)] truncate">
+                  {item.degree} — {item.institution.split("(")[0].trim().split(",")[0]}
+                </h3>
+                <p className="font-mono text-xs text-[var(--muted-foreground)]">
                   {item.period}
-                </span>
+                </p>
               </div>
             </div>
-          );
-        })}
+            <ChevronsUpDown className="size-3.5 text-[var(--muted-foreground)] shrink-0" />
+          </div>
+        ))}
       </div>
     </section>
   );

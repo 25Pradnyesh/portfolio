@@ -16,6 +16,7 @@ import {
   Moon,
   ArrowUpRight,
   CornerDownLeft,
+  Bookmark,
 } from "lucide-react";
 import {
   GithubIcon,
@@ -28,7 +29,7 @@ import {
 interface ActionItem {
   id: string;
   name: string;
-  category: "Navigation" | "Links" | "Actions";
+  category: "Menu" | "Portfolio" | "Social" | "Actions";
   icon: React.ReactNode;
   keywords?: string[];
   perform: () => void;
@@ -40,7 +41,10 @@ interface CommandPaletteProps {
   onClose: () => void;
 }
 
-export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
+export default function CommandPalette({
+  isOpen,
+  onClose,
+}: CommandPaletteProps) {
   const [search, setSearch] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -52,7 +56,6 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     onClose();
   }, [onClose]);
 
-  // Toggle theme helper
   const handleToggleTheme = () => {
     const isLight = document.documentElement.classList.toggle("light");
     localStorage.setItem("theme", isLight ? "light" : "dark");
@@ -83,115 +86,125 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
   const actions: ActionItem[] = useMemo(
     () => [
-      // Navigation
+      // Menu
       {
         id: "nav-home",
         name: "Home",
-        category: "Navigation",
+        category: "Menu",
         icon: <Home className="size-4" />,
-        keywords: ["top", "hero", "overview", "start"],
+        keywords: ["top", "hero", "start"],
         perform: () => scrollTo("top"),
       },
+
+      // Portfolio
       {
         id: "nav-about",
         name: "About",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <User className="size-4" />,
-        keywords: ["bio", "background", "who", "profile"],
+        keywords: ["bio", "background", "who"],
         perform: () => scrollTo("about"),
       },
       {
         id: "nav-stack",
-        name: "Stack",
-        category: "Navigation",
+        name: "Tech Stack",
+        category: "Portfolio",
         icon: <Layers className="size-4" />,
-        keywords: ["tech", "technologies", "skills", "tools", "languages"],
+        keywords: ["tech", "technologies", "skills"],
         perform: () => scrollTo("stack"),
       },
       {
         id: "nav-experience",
         name: "Experience",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <Briefcase className="size-4" />,
-        keywords: ["work", "career", "history", "jobs"],
+        keywords: ["work", "career"],
         perform: () => scrollTo("experience"),
       },
       {
         id: "nav-education",
         name: "Education",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <GraduationCap className="size-4" />,
-        keywords: ["degree", "university", "college", "school", "sppu"],
+        keywords: ["degree", "university", "college", "school"],
         perform: () => scrollTo("education"),
       },
       {
         id: "nav-projects",
         name: "Projects",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <FolderGit2 className="size-4" />,
-        keywords: ["work", "code", "repos", "travel ai", "vertifarm", "penguin", "reclaim"],
+        keywords: ["work", "code", "repos"],
         perform: () => scrollTo("projects"),
       },
       {
         id: "nav-awards",
         name: "Honors & Awards",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <Trophy className="size-4" />,
-        keywords: ["achievements", "hackathons", "winner", "monad", "wemakedevs"],
+        keywords: ["achievements", "hackathons", "winner"],
         perform: () => scrollTo("awards"),
+      },
+      {
+        id: "nav-interests",
+        name: "Exploring",
+        category: "Portfolio",
+        icon: <Bookmark className="size-4" />,
+        keywords: ["interests", "bookmarks"],
+        perform: () => scrollTo("interests"),
       },
       {
         id: "nav-contact",
         name: "Contact",
-        category: "Navigation",
+        category: "Portfolio",
         icon: <Mail className="size-4" />,
-        keywords: ["email", "message", "reach out", "hire"],
+        keywords: ["email", "message", "hire"],
         perform: () => scrollTo("contact"),
       },
 
-      // Links
+      // Social
       {
         id: "link-github",
         name: "GitHub",
-        category: "Links",
+        category: "Social",
         icon: <GithubIcon className="size-4" />,
-        keywords: ["code", "repositories", "25Pradnyesh"],
+        keywords: ["code", "repositories"],
         perform: () => openUrl("https://github.com/25Pradnyesh"),
         isExternal: true,
       },
       {
         id: "link-linkedin",
         name: "LinkedIn",
-        category: "Links",
+        category: "Social",
         icon: <LinkedinIcon className="size-4" />,
-        keywords: ["network", "profile", "connect"],
+        keywords: ["network", "connect"],
         perform: () => openUrl("https://www.linkedin.com/in/pradnyesh-s/"),
         isExternal: true,
       },
       {
         id: "link-x",
         name: "X",
-        category: "Links",
+        category: "Social",
         icon: <XIcon className="size-3.5" />,
-        keywords: ["twitter", "social", "tweets"],
+        keywords: ["twitter", "social"],
         perform: () => openUrl("https://x.com/Pradnyesh_25"),
         isExternal: true,
       },
       {
         id: "link-cal",
-        name: "Cal.com",
-        category: "Links",
+        name: "Book a Meeting",
+        category: "Social",
         icon: <CalIcon className="size-4" />,
-        keywords: ["meeting", "schedule", "book", "call", "15 min", "30 min"],
+        keywords: ["meeting", "schedule", "book", "call"],
         perform: () => openUrl("https://cal.com/pradnyesh"),
         isExternal: true,
       },
       {
         id: "link-resume",
         name: "Resume",
-        category: "Links",
+        category: "Social",
         icon: <ResumeIcon className="size-4" />,
-        keywords: ["cv", "pdf", "download", "education", "experience"],
+        keywords: ["cv", "pdf", "download"],
         perform: () => openUrl("/resume.pdf"),
         isExternal: true,
       },
@@ -202,13 +215,15 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         name: "Toggle Theme",
         category: "Actions",
         icon: (
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-0.5">
             <Sun className="size-3.5" />
-            <span className="text-[10px]">/</span>
+            <span className="text-[9px] text-[var(--muted-foreground)]">
+              /
+            </span>
             <Moon className="size-3.5" />
           </span>
         ),
-        keywords: ["dark", "light", "mode", "color"],
+        keywords: ["dark", "light", "mode"],
         perform: handleToggleTheme,
       },
     ],
@@ -216,19 +231,32 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     []
   );
 
-  // Filter actions based on query
   const filteredActions = useMemo(() => {
     if (!search.trim()) return actions;
     const query = search.toLowerCase().trim();
     return actions.filter((action) => {
       const matchName = action.name.toLowerCase().includes(query);
       const matchCategory = action.category.toLowerCase().includes(query);
-      const matchKeywords = action.keywords?.some((k) => k.toLowerCase().includes(query));
+      const matchKeywords = action.keywords?.some((k) =>
+        k.toLowerCase().includes(query)
+      );
       return matchName || matchCategory || matchKeywords;
     });
   }, [actions, search]);
 
-  // Handle focus when modal opens
+  // Group by category
+  const groupedActions = useMemo(() => {
+    const groups: Record<string, ActionItem[]> = {};
+    filteredActions.forEach((action) => {
+      if (!groups[action.category]) groups[action.category] = [];
+      groups[action.category].push(action);
+    });
+    return groups;
+  }, [filteredActions]);
+
+  // Flat list for keyboard navigation
+  const flatActions = filteredActions;
+
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -238,35 +266,33 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     }
   }, [isOpen]);
 
-  // Keyboard navigation inside modal
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "ArrowDown") {
         e.preventDefault();
         setSelectedIndex((prev) =>
-          filteredActions.length > 0 ? (prev + 1) % filteredActions.length : 0
+          flatActions.length > 0 ? (prev + 1) % flatActions.length : 0
         );
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setSelectedIndex((prev) =>
-          filteredActions.length > 0
-            ? (prev - 1 + filteredActions.length) % filteredActions.length
+          flatActions.length > 0
+            ? (prev - 1 + flatActions.length) % flatActions.length
             : 0
         );
       } else if (e.key === "Enter") {
         e.preventDefault();
-        if (filteredActions[selectedIndex]) {
-          filteredActions[selectedIndex].perform();
+        if (flatActions[selectedIndex]) {
+          flatActions[selectedIndex].perform();
         }
       } else if (e.key === "Escape") {
         e.preventDefault();
         handleClose();
       }
     },
-    [filteredActions, selectedIndex, handleClose]
+    [flatActions, selectedIndex, handleClose]
   );
 
-  // Scroll selected item into view
   useEffect(() => {
     if (listRef.current) {
       const selectedEl = listRef.current.querySelector(
@@ -298,16 +324,16 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
           />
 
-          {/* Palette Box */}
+          {/* Palette */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -10 }}
+            initial={{ opacity: 0, scale: 0.96, y: -8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -10 }}
+            exit={{ opacity: 0, scale: 0.96, y: -8 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="relative w-full max-w-xl overflow-hidden rounded-lg border border-edge bg-[var(--background)] shadow-2xl z-10"
+            className="relative w-full max-w-lg overflow-hidden rounded-lg border border-[var(--edge)] bg-[var(--background)] shadow-2xl z-10"
           >
-            {/* Search Input Bar */}
-            <div className="flex items-center border-b border-edge px-3.5 py-3">
+            {/* Search Input */}
+            <div className="flex items-center border-b border-[var(--edge)] px-3.5 py-3">
               <Search className="size-4 text-[var(--muted-foreground)] shrink-0 mr-2.5" />
               <input
                 ref={inputRef}
@@ -318,80 +344,89 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                   setSelectedIndex(0);
                 }}
                 placeholder="Type a command or search..."
-                className="w-full bg-transparent font-mono text-xs sm:text-sm text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none"
+                className="w-full bg-transparent text-sm text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none"
               />
-              <span className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-edge text-[var(--muted-foreground)] bg-[var(--muted)] select-none">
-                ESC
-              </span>
             </div>
 
-            {/* Results List */}
+            {/* Results */}
             <div
               ref={listRef}
-              className="max-h-80 overflow-y-auto p-2 divide-y divide-transparent"
+              className="max-h-[320px] overflow-y-auto py-1"
             >
-              {filteredActions.length === 0 ? (
-                <div className="py-8 text-center font-mono text-xs text-[var(--muted-foreground)]">
+              {flatActions.length === 0 ? (
+                <div className="py-8 text-center text-sm text-[var(--muted-foreground)]">
                   No matching commands found.
                 </div>
               ) : (
-                filteredActions.map((action, idx) => {
-                  const isSelected = idx === selectedIndex;
-                  return (
-                    <button
-                      key={action.id}
-                      data-index={idx}
-                      onClick={() => action.perform()}
-                      onMouseEnter={() => setSelectedIndex(idx)}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded text-left font-mono text-xs transition-colors duration-100 ${
-                        isSelected
-                          ? "bg-[var(--muted)] text-[var(--foreground)] font-medium border-l-2 border-emerald-500"
-                          : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <div
-                          className={`shrink-0 ${
-                            isSelected
-                              ? "text-emerald-400"
-                              : "text-[var(--muted-foreground)]"
-                          }`}
-                        >
-                          {action.icon}
-                        </div>
-                        <span className="truncate">{action.name}</span>
-                      </div>
-
-                      <div className="flex items-center gap-2 text-[10px] text-[var(--muted-foreground)] shrink-0">
-                        <span className="px-1.5 py-0.5 rounded border border-edge/60 bg-[var(--background)]">
-                          {action.category}
+                Object.entries(groupedActions).map(
+                  ([category, categoryActions]) => (
+                    <div key={category}>
+                      <div className="px-3.5 pt-2 pb-1">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted-foreground)]">
+                          {category}
                         </span>
-                        {action.isExternal ? (
-                          <ArrowUpRight className="size-3" />
-                        ) : isSelected ? (
-                          <CornerDownLeft className="size-3 text-emerald-400" />
-                        ) : null}
                       </div>
-                    </button>
-                  );
-                })
+                      {categoryActions.map((action) => {
+                        const globalIdx = flatActions.indexOf(action);
+                        const isSelected = globalIdx === selectedIndex;
+                        return (
+                          <button
+                            key={action.id}
+                            data-index={globalIdx}
+                            onClick={() => action.perform()}
+                            onMouseEnter={() => setSelectedIndex(globalIdx)}
+                            className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-sm transition-colors duration-75 ${
+                              isSelected
+                                ? "bg-[var(--muted)] text-[var(--foreground)]"
+                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div
+                                className={`shrink-0 ${
+                                  isSelected
+                                    ? "text-[var(--foreground)]"
+                                    : "text-[var(--muted-foreground)]"
+                                }`}
+                              >
+                                {action.icon}
+                              </div>
+                              <span className="truncate">{action.name}</span>
+                            </div>
+
+                            {action.isExternal ? (
+                              <ArrowUpRight className="size-3 text-[var(--muted-foreground)] shrink-0" />
+                            ) : isSelected ? (
+                              <CornerDownLeft className="size-3 text-[var(--muted-foreground)] shrink-0" />
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )
+                )
               )}
             </div>
 
-            {/* Footer Status / Keyboard Navigation Hint */}
-            <div className="border-t border-edge px-3.5 py-2 flex items-center justify-between font-mono text-[10px] text-[var(--muted-foreground)] bg-[var(--muted)]/40">
-              <div className="flex items-center gap-3">
+            {/* Footer */}
+            <div className="border-t border-[var(--edge)] px-3.5 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-1 font-mono text-[11px] text-[var(--foreground)]">
+                <span className="font-bold">PS</span>
+              </div>
+              <div className="flex items-center gap-3 font-mono text-[10px] text-[var(--muted-foreground)]">
                 <span className="flex items-center gap-1">
-                  <kbd className="px-1 py-0.5 rounded border border-edge bg-[var(--background)]">↑</kbd>
-                  <kbd className="px-1 py-0.5 rounded border border-edge bg-[var(--background)]">↓</kbd>
-                  <span>navigate</span>
+                  Go to Page
+                  <kbd className="px-1 py-0.5 rounded border border-[var(--edge)] bg-[var(--muted)]">
+                    ↵
+                  </kbd>
                 </span>
                 <span className="flex items-center gap-1">
-                  <kbd className="px-1 py-0.5 rounded border border-edge bg-[var(--background)]">↵</kbd>
-                  <span>select</span>
+                  Exit
+                  <kbd className="px-1 py-0.5 rounded border border-[var(--edge)] bg-[var(--muted)]">
+                    Esc
+                  </kbd>
                 </span>
               </div>
-              <span className="hidden sm:inline">Pradnyesh Portfolio</span>
             </div>
           </motion.div>
         </div>

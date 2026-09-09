@@ -1,23 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --edge: #27272a;
-  --pattern-foreground: rgba(255, 255, 255, 0.08);
-  --pattern-dot: rgba(255, 255, 255, 0.12);
+  --background: #0a0a0b;
+  --foreground: #ededed;
+  --muted: #141416;
+  --muted-foreground: #a0a0a8;
+  --edge: #1e1e22;
+  --accent: #3b82f6;
 }
 
 .light {
   --background: #ffffff;
-  --foreground: #09090b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --edge: #e4e4e7;
-  --pattern-foreground: rgba(0, 0, 0, 0.06);
-  --pattern-dot: rgba(0, 0, 0, 0.12);
+  --foreground: #0a0a0b;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b6b76;
+  --edge: #e5e5e8;
+  --accent: #2563eb;
 }
 
 html {
@@ -32,7 +30,8 @@ html.light {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,15 +42,11 @@ body {
   color: var(--background);
 }
 
-/* Screen Line Utilities (Prathadox Architecture) */
-.border-edge {
-  border-color: var(--edge);
-}
-
-.screen-line-before {
+/* Full-width screen lines inspired by the reference */
+.screen-line-top {
   position: relative;
 }
-.screen-line-before::before {
+.screen-line-top::before {
   content: "";
   position: absolute;
   left: -100vw;
@@ -63,10 +58,10 @@ body {
   z-index: 1;
 }
 
-.screen-line-after {
+.screen-line-bottom {
   position: relative;
 }
-.screen-line-after::after {
+.screen-line-bottom::after {
   content: "";
   position: absolute;
   left: -100vw;
@@ -78,23 +73,42 @@ body {
   z-index: 1;
 }
 
+/* Hatching pattern */
 .hatch-pattern {
   background-image: repeating-linear-gradient(
-    315deg,
-    var(--pattern-foreground) 0,
-    var(--pattern-foreground) 1px,
-    transparent 0,
-    transparent 50%
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(255, 255, 255, 0.03) 4px,
+    rgba(255, 255, 255, 0.03) 5px
   );
-  background-size: 10px 10px;
 }
 
+.light .hatch-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.04) 4px,
+    rgba(0, 0, 0, 0.04) 5px
+  );
+}
+
+/* Dot grid for banner */
 .dot-grid {
-  background-image: radial-gradient(var(--pattern-dot) 1px, transparent 0);
-  background-size: 12px 12px;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 0
+  );
+  background-size: 16px 16px;
 }
 
-/* Precision scrollbar */
+.light .dot-grid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -103,6 +117,7 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--edge);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
@@ -114,14 +129,14 @@ body {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-33.333333%);
+    transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 30s linear infinite;
   will-change: transform;
 }
 
@@ -135,3 +150,21 @@ body {
   }
 }
 
+/* Timeline dotted line */
+.timeline-line {
+  position: relative;
+}
+.timeline-line::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 32px;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--edge);
+}
+
+/* Border utilities */
+.border-edge {
+  border-color: var(--edge);
+}
