@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useSyncExternalStore } from "react";
-import { Moon, Sun, Search, Menu, X } from "lucide-react";
-import { GithubIcon } from "@/components/Icons";
+import { Moon, Sun, Search } from "lucide-react";
+import { BrandGithubIcon, PixelPSLogo } from "@/components/Icons";
 import CommandPalette from "@/components/CommandPalette";
 
 function subscribeTheme(callback: () => void) {
@@ -47,8 +47,8 @@ export default function Navbar() {
     getIsMacSnapshot,
     getServerIsMacSnapshot
   );
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -57,6 +57,10 @@ export default function Navbar() {
       window.dispatchEvent(new Event("theme-change"));
     }
 
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 120);
+    };
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -64,8 +68,12 @@ export default function Navbar() {
       }
     };
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -74,68 +82,58 @@ export default function Navbar() {
     window.dispatchEvent(new Event("theme-change"));
   };
 
-  const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ];
-
-  const mobileNavLinks = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#about" },
-    { label: "Contributions", href: "#contributions" },
-    { label: "Stack", href: "#stack" },
-    { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
-    { label: "Projects", href: "#projects" },
-    { label: "Awards", href: "#awards" },
-    { label: "Exploring", href: "#exploring" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[var(--background)]/95 backdrop-blur-md screen-line-bottom">
-        <div className="mx-auto max-w-[720px] flex h-11 items-center justify-between px-5">
-          {/* Left: Logo */}
+      <header className="sticky top-0 z-50 max-w-screen overflow-x-hidden bg-[var(--background)]/90 backdrop-blur-md px-2 pt-2">
+        <div className="screen-line-before screen-line-after mx-auto flex h-12 max-w-3xl items-center justify-between gap-2 border-x border-edge px-3 sm:px-4">
+          {/* Logo / Brand - appears when scrolled past hero */}
           <a
             href="#"
-            className="font-mono text-[13px] font-bold tracking-tight text-[var(--foreground)] hover:opacity-80 transition-opacity"
+            className={`select-none transition-all duration-300 ${
+              isScrolled
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-1 pointer-events-none"
+            }`}
+            aria-label="Home"
           >
-            PS
+            <PixelPSLogo className="h-5 w-8 text-[var(--foreground)]" />
           </a>
 
-          {/* Right: Nav + Actions */}
-          <div className="flex items-center gap-0.5">
-            {/* Desktop Nav Links */}
-            <nav className="hidden md:flex items-center gap-0 mr-1.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="px-2 py-1 text-[12px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          <div className="flex-1" />
 
-            {/* Separator */}
-            <div className="hidden md:block w-px h-3.5 bg-[var(--edge)] mx-1" />
+          {/* Nav: Home & Blog */}
+          <nav className="flex items-center gap-4 mr-2">
+            <a
+              href="#"
+              className="font-mono text-xs sm:text-sm font-medium text-[var(--foreground)] transition-colors hover:text-[var(--foreground)]"
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              className="font-mono text-xs sm:text-sm font-medium text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]"
+            >
+              Blog
+            </a>
+          </nav>
 
+          {/* Right controls: Command Palette, GitHub, Theme */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Command Palette Trigger */}
             <button
               onClick={() => setIsCommandPaletteOpen(true)}
-              className="inline-flex items-center gap-1.5 h-6 px-1.5 rounded-sm text-[10px] font-mono border border-[var(--edge)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
-              aria-label="Open Command Palette"
-              title={`Search (${isMac ? "⌘K" : "Ctrl+K"})`}
+              className="group inline-flex items-center gap-1.5 h-8 px-2.5 rounded-full text-xs font-mono border border-edge bg-[var(--muted)]/40 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:border-[var(--muted-foreground)]/40 transition-all cursor-pointer select-none"
+              aria-label="Search"
             >
-              <Search className="size-3" />
-              <span className="hidden sm:inline-flex items-center gap-0.5 text-[9px]">
-                <kbd className="px-0.5 py-px rounded-sm border border-[var(--edge)] bg-[var(--muted)]">
+              <Search className="size-3.5" />
+              <span className="hidden sm:inline font-sans text-xs text-[var(--muted-foreground)]">
+                Search…
+              </span>
+              <span className="inline-flex items-center gap-0.5">
+                <kbd className="px-1 py-0.5 text-[10px] rounded border border-edge bg-[var(--background)] font-sans">
                   {isMac ? "⌘" : "Ctrl"}
                 </kbd>
-                <kbd className="px-0.5 py-px rounded-sm border border-[var(--edge)] bg-[var(--muted)]">
+                <kbd className="px-1 py-0.5 text-[10px] rounded border border-edge bg-[var(--background)] font-sans">
                   K
                 </kbd>
               </span>
@@ -146,57 +144,31 @@ export default function Navbar() {
               href="https://github.com/25Pradnyesh"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+              className="flex size-8 items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
               aria-label="GitHub"
               title="GitHub"
             >
-              <GithubIcon className="size-3.5" />
+              <BrandGithubIcon className="size-4" />
             </a>
 
-            {/* Theme Toggle */}
+            {/* Separator */}
+            <div className="w-px h-4 bg-edge mx-0.5" />
+
+            {/* Theme Switcher */}
             <button
               onClick={toggleTheme}
-              className="p-1.5 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+              className="flex size-8 items-center justify-center rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors cursor-pointer"
               aria-label="Toggle theme"
-              title="Toggle dark/light mode"
+              title="Toggle theme"
             >
               {theme === "dark" ? (
-                <Sun className="size-3.5" />
+                <Moon className="size-4" />
               ) : (
-                <Moon className="size-3.5" />
-              )}
-            </button>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-              aria-label="Toggle navigation"
-            >
-              {mobileMenuOpen ? (
-                <X className="size-3.5" />
-              ) : (
-                <Menu className="size-3.5" />
+                <Sun className="size-4" />
               )}
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu Drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mx-auto max-w-[720px] border-t border-[var(--edge)] bg-[var(--background)] px-5 py-1.5">
-            {mobileNavLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-2 py-1.5 text-[12px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
       </header>
 
       <CommandPalette

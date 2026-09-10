@@ -1,28 +1,34 @@
 @import "tailwindcss";
 
+/* Design tokens matching prathadox.com reference */
 :root {
-  --background: #0a0a0b;
-  --foreground: #ededed;
-  --muted: #141416;
-  --muted-foreground: #8a8a96;
-  --edge: #1e1e22;
-  --accent: #ededed;
-  --accent-muted: #a0a0a8;
+  /* Colors - Zinc palette */
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #71717b;
+  --edge: #27272a;
+  --accent: #fafafa;
+  --accent-muted: #9f9fa9;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
 
   /* Spacing system */
   --section-gap: 0px;
-  --content-px: 20px;
+  --content-px: 16px;
   --content-py: 16px;
 }
 
 .light {
-  --background: #fafaf9;
-  --foreground: #0a0a0b;
-  --muted: #f0f0ee;
-  --muted-foreground: #64645e;
-  --edge: #e0e0dc;
-  --accent: #0a0a0b;
-  --accent-muted: #6b6b76;
+  --background: #fafafa;
+  --foreground: #09090b;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525c;
+  --edge: #e4e4e7;
+  --accent: #09090b;
+  --accent-muted: #71717b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
 }
 
 html {
@@ -50,11 +56,12 @@ body {
   color: var(--background);
 }
 
-/* Full-width screen lines */
-.screen-line-top {
+/* Screen-wide border lines */
+.screen-line-before {
   position: relative;
 }
-.screen-line-top::before {
+
+.screen-line-before::before {
   content: "";
   position: absolute;
   left: -100vw;
@@ -66,10 +73,11 @@ body {
   z-index: 1;
 }
 
-.screen-line-bottom {
+.screen-line-after {
   position: relative;
 }
-.screen-line-bottom::after {
+
+.screen-line-after::after {
   content: "";
   position: absolute;
   left: -100vw;
@@ -81,36 +89,71 @@ body {
   z-index: 1;
 }
 
-/* Dot grid for banner */
+/* Dot grid pattern for hero banner */
 .dot-grid {
   background-image: radial-gradient(
-    rgba(255, 255, 255, 0.06) 1px,
+    rgba(255, 255, 255, 0.08) 1px,
     transparent 0
   );
-  background-size: 20px 20px;
+  background-size: 10px 10px;
+  background-position: center;
 }
 
 .light .dot-grid {
   background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 0);
-  background-size: 20px 20px;
+  background-size: 10px 10px;
 }
 
-/* Scrollbar */
+/* Diagonal-striped divider matching prathadox.com */
+.diagonal-divider {
+  position: relative;
+  display: flex;
+  height: 1.75rem;
+  width: 100%;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+}
+
+.diagonal-divider::before {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  right: -100vw;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--edge) 0,
+    var(--edge) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 8px 8px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 4px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--background);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--edge);
   border-radius: 2px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted-foreground);
 }
 
-/* Moving Text Marquee */
+/* Moving text marquee animation */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -123,7 +166,7 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 40s linear infinite;
   will-change: transform;
 }
 
@@ -135,11 +178,6 @@ body {
   .animate-marquee {
     animation: none !important;
   }
-}
-
-/* Border utilities */
-.border-edge {
-  border-color: var(--edge);
 }
 
 /* Section heading style */
@@ -167,28 +205,39 @@ body {
 .contrib-0 {
   background-color: var(--muted);
 }
+
 .contrib-1 {
   background-color: #0e4429;
 }
+
 .contrib-2 {
   background-color: #006d32;
 }
+
 .contrib-3 {
   background-color: #26a641;
 }
+
 .contrib-4 {
   background-color: #39d353;
+}
+
+.light .contrib-0 {
+  background-color: #ebedf0;
 }
 
 .light .contrib-1 {
   background-color: #9be9a8;
 }
+
 .light .contrib-2 {
   background-color: #40c463;
 }
+
 .light .contrib-3 {
   background-color: #30a14e;
 }
+
 .light .contrib-4 {
   background-color: #216e39;
 }
@@ -196,20 +245,20 @@ body {
 /* Contribution tooltip */
 .contrib-tooltip {
   position: absolute;
-  bottom: calc(100% + 6px);
+  bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  padding: 4px 8px;
+  padding: 6px 10px;
   font-size: 11px;
   font-family: var(--font-geist-mono), monospace;
   background-color: var(--foreground);
   color: var(--background);
-  border-radius: 4px;
+  border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 20;
+  z-index: 50;
   opacity: 0;
-  transition: opacity 0.15s;
+  transition: opacity 0.2s;
 }
 
 .contrib-cell:hover .contrib-tooltip {
@@ -225,4 +274,28 @@ body {
   border-width: 4px;
   border-style: solid;
   border-color: var(--foreground) transparent transparent transparent;
+}
+
+/* Border utilities */
+.border-edge {
+  border-color: var(--edge);
+}
+
+/* Panel sections */
+[data-slot="panel"] {
+  border-left: 1px solid var(--edge);
+  border-right: 1px solid var(--edge);
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+button,
+a,
+[role="button"] {
+  transition: all 150ms ease-out;
 }

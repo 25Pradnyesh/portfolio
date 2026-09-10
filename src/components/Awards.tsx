@@ -6,51 +6,52 @@ export default function Awards() {
   const { achievements } = portfolioData;
 
   return (
-    <section id="awards" className="screen-line-bottom">
+    <section
+      id="awards"
+      data-slot="panel"
+      className="screen-line-before screen-line-after border-x border-edge before:content-none after:content-none"
+    >
       {/* Section Header */}
-      <div className="px-5 py-3 border-b border-[var(--edge)] screen-line-bottom flex items-center justify-between">
-        <span className="section-heading">Honors & Awards</span>
-        <span className="font-mono text-[10px] text-[var(--muted-foreground)]">
-          {achievements.length}
+      <div className="border-b border-edge px-4 py-3 flex items-center justify-between">
+        <h2 className="section-heading">Honors & Awards</h2>
+        <span className="font-mono text-[10px] text-[var(--muted-foreground)] tabular-nums">
+          ({achievements.length})
         </span>
       </div>
 
       {/* Awards List */}
-      <div className="border-b border-[var(--edge)]">
+      <div className="border-b border-edge">
         {achievements.map((item, index) => (
           <div
             key={index}
-            className={`flex items-start gap-3 px-5 py-4 border-b border-[var(--edge)] last:border-b-0 hover:bg-[var(--muted)]/30 transition-colors ${
+            className={`flex items-start gap-3 px-4 py-4 border-b border-edge last:border-b-0 hover:bg-[var(--muted)]/30 transition-colors ${
               index === 0 ? "bg-[var(--muted)]/10" : ""
             }`}
           >
-            {/* Emoji */}
-            <span className="text-base shrink-0 pt-0.5 leading-none" aria-hidden="true">
+            {/* Emoji Icon */}
+            <span
+              className="text-base shrink-0 pt-0.5 leading-none select-none"
+              aria-hidden="true"
+            >
               {item.emoji}
             </span>
 
             {/* Content */}
-            <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <h3 className={`text-[13px] font-medium leading-tight ${
-                    index === 0
-                      ? "text-[var(--foreground)]"
-                      : "text-[var(--foreground)]"
-                  }`}>
-                    {item.type} — {item.event}
-                  </h3>
-                  {item.project && (
-                    <p className="font-mono text-[11px] text-[var(--muted-foreground)] mt-0.5">
-                      {item.project}
-                    </p>
-                  )}
-                  {item.description && (
-                    <p className="text-[11px] text-[var(--muted-foreground)]/70 mt-0.5">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
+            <div className="flex-1 min-w-0 space-y-1">
+              <div>
+                <h3 className="text-sm font-medium text-[var(--foreground)] leading-tight">
+                  {item.type} — {item.event}
+                </h3>
+                {item.project && (
+                  <p className="font-mono text-xs text-[var(--muted-foreground)] mt-1">
+                    {item.project}
+                  </p>
+                )}
+                {item.description && (
+                  <p className="text-xs text-[var(--muted-foreground)]/80 mt-1">
+                    {item.description}
+                  </p>
+                )}
               </div>
             </div>
           </div>

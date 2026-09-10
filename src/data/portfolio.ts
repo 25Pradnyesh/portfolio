@@ -7,14 +7,16 @@ export interface Project {
   technologies: string[];
   projectUrl?: string;
   githubUrl?: string;
+  featured?: boolean;
 }
 
 export interface AchievementItem {
   emoji: string;
   type: string;
   event: string;
-  project: string;
+  project?: string;
   description?: string;
+  date?: string;
 }
 
 export interface ExperienceItem {
@@ -166,19 +168,34 @@ export const portfolioData: PortfolioData = {
       skills: ["Node.js", "FastAPI"],
     },
     {
-      category: "AI",
-      skills: ["Generative AI", "LLMs", "AI Agents", "Computer Vision", "NLP"],
+      category: "Database",
+      skills: ["SQL", "Supabase"],
     },
     {
-      category: "Database",
-      skills: ["Supabase", "SQL"],
+      category: "AI",
+      skills: ["Generative AI", "LLMs", "AI APIs", "AI Agents"],
+    },
+    {
+      category: "Product",
+      skills: ["Figma", "UI/UX", "Prototyping"],
+    },
+    {
+      category: "Web3",
+      skills: ["Smart Contracts", "Blockchain", "Web3 Ecosystems"],
     },
     {
       category: "Tools",
-      skills: ["Git", "GitHub", "VS Code"],
+      skills: ["Git", "GitHub", "Framer Motion", "VS Code"],
     },
   ],
   experience: [
+    {
+      role: "Software Development",
+      duration: "~1–1.5 years",
+      description:
+        "Full-stack software engineering, architecture, frontend, backend, and deployment.",
+      tags: ["TypeScript", "Next.js", "FastAPI", "System Design"],
+    },
     {
       role: "AI / GenAI",
       duration: "~1 year",
@@ -187,75 +204,64 @@ export const portfolioData: PortfolioData = {
       tags: ["LLMs", "FastAPI", "Prompt Engineering", "Python", "AI APIs"],
     },
     {
-      role: "Full-Stack Development",
-      duration: "~1–1.5 years",
-      description:
-        "End-to-end product development — architecture, frontend, backend, and deployment.",
-      tags: ["TypeScript", "Next.js", "System Architecture", "Full-Stack"],
-    },
-    {
       role: "Web Development",
       duration: "~1–1.5 years",
-      description: "React, Next.js, Node.js, and TypeScript applications.",
+      description:
+        "React, Next.js, Node.js, and TypeScript applications with modern UI/UX.",
       tags: ["React", "Next.js", "Node.js", "Tailwind CSS"],
     },
     {
       role: "Web3",
       duration: "~6–12 months",
       description:
-        "Web3 ecosystems, smart-contract integration, and hackathon projects.",
-      tags: ["Smart Contracts", "Ecosystems", "Web3 UI", "Hackathons"],
+        "Web3 ecosystems, smart contracts, and hackathon project developments.",
+      tags: ["Smart Contracts", "Blockchain", "Web3 Ecosystems"],
     },
     {
       role: "UI/UX",
       duration: "~1–1.5 years",
       description: "Product interfaces, Figma, prototyping and design systems.",
-      tags: [
-        "Figma",
-        "Design Systems",
-        "Prototyping",
-        "Information Architecture",
-      ],
+      tags: ["Figma", "Design Systems", "Prototyping", "UI/UX"],
     },
     {
-      role: "Video Editing",
+      role: "Video / Content",
       duration: "1+ year",
-      description: "Client and agency editing work, content production.",
+      description: "Content production, editing, and visual storytelling.",
       tags: ["Content Production", "Visual Storytelling", "Editing"],
     },
     {
       role: "Hackathons",
-      duration: "Multiple events",
+      duration: "Multiple builds",
       description:
-        "Competed and shipped products at hackathons across AI, Web3 and full-stack.",
-      tags: ["Rapid Prototyping", "Team Building", "Product Shipping"],
+        "Competed, shipped products and secured wins across AI, Web3 and full-stack events.",
+      tags: ["Rapid Prototyping", "Team Building", "1 Hackathon Win"],
     },
     {
       role: "Independent Projects",
       duration: "Ongoing",
       description:
-        "Self-initiated products and experiments across domains.",
-      tags: ["Product Thinking", "Shipping", "Experimentation"],
+        "Self-initiated products and experimental builds shipped from zero.",
+      tags: ["Product Thinking", "Shipping", "Zero to One"],
     },
   ],
   education: [
     {
       id: "sppu-be",
-      institution: "Savitribai Phule Pune University",
+      institution: "Savitribai Phule Pune University (SPPU)",
       degree: "B.E. — Electronics & Computer Engineering",
-      period: "2023 – 2027",
+      period: "2023—2027",
     },
     {
       id: "bk-birla-12",
       institution: "B.K. Birla College of Arts, Science & Commerce",
       degree: "12th Grade",
-      period: "2021 – 2023",
+      period: "2021—2023",
     },
     {
       id: "skcg-10",
       institution: "Smt. Kantaben Chandulal Gandhi English School",
       degree: "10th Grade",
-      period: "2020 – 2021",
+      period: "2020—2021",
     },
   ],
   projects: [
@@ -264,39 +270,16 @@ export const portfolioData: PortfolioData = {
       title: "Travel AI",
       period: "2024",
       description:
-        "AI-powered system that extracts travel locations from Instagram content and organizes discovered locations into Google Maps.",
+        "AI-powered system for extracting exact travel locations from Instagram travel content and organizing discovered locations into Google Maps.",
       technologies: ["Next.js", "Python", "FastAPI", "AI", "Google Maps"],
       githubUrl: "https://github.com/25Pradnyesh/Travel-AI-",
-    },
-    {
-      id: "penguin-protocol",
-      title: "Penguin Protocol",
-      period: "2024",
-      achievement: "Winner — Monad Blitz Pune",
-      description: "Decentralized AI Investment Syndicate.",
-      technologies: ["Monad", "Web3", "Smart Contracts", "AI Agents"],
-    },
-    {
-      id: "reclaim",
-      title: "Reclaim",
-      period: "2024",
-      achievement: "WeMakeDevs FutureStack GenAI Hackathon",
-      description:
-        "AI-powered phone addiction management application. Built and shipped in 6 days during the hackathon.",
-      technologies: [
-        "Next.js 14",
-        "Tailwind CSS",
-        "Supabase",
-        "Cerebras API",
-        "Llama",
-      ],
     },
     {
       id: "vertifarm",
       title: "VertiFarm",
       period: "2024",
       description:
-        "Smart vertical farming management system for environmental monitoring, sensors, alerts and crop health.",
+        "Smart vertical farming management platform involving environmental monitoring, sensors, alerts and crop health.",
       technologies: ["React", "IoT", "AI", "Dashboard", "UX"],
       githubUrl: "https://github.com/25Pradnyesh/vertifarm-app",
     },
@@ -310,26 +293,48 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/25Pradnyesh/Design-Resource-Vault",
     },
     {
+      id: "penguin-protocol",
+      title: "Penguin Protocol",
+      period: "2024",
+      achievement: "🏆 Winner — Monad Blitz Pune",
+      description: "Decentralized AI Investment Syndicate.",
+      technologies: ["Monad", "Web3", "Smart Contracts", "AI Agents"],
+    },
+    {
+      id: "reclaim",
+      title: "Reclaim",
+      period: "2024",
+      achievement: "WeMakeDevs FutureStack GenAI Hackathon (Shipped in 6 days)",
+      description:
+        "AI-powered phone addiction management application built during WeMakeDevs FutureStack GenAI Hackathon.",
+      technologies: [
+        "Next.js 14",
+        "Tailwind",
+        "Supabase",
+        "Cerebras API",
+        "Llama",
+      ],
+    },
+    {
       id: "voiceads",
       title: "VoiceAds",
       period: "2024",
-      achievement: "AIBoomi Startup Weekend Pune",
-      description:
-        "AI voice advertising MVP built during startup weekend.",
-      technologies: ["AI", "Voice", "MVP"],
+      achievement: "AIBoomi Startup Weekend — Pune",
+      description: "AI voice advertising MVP.",
+      technologies: ["AI", "Voice", "FastAPI", "MVP"],
     },
     {
       id: "starknet-outpost",
-      title: "Starknet Outpost Demo Day",
+      title: "Starknet Outpost",
       period: "2024",
-      description:
-        "Web3 project participation and demo-day presentation.",
+      achievement: "Demo Day Participation",
+      description: "Web3 project / demo-day participation.",
       technologies: ["Starknet", "Web3", "Smart Contracts"],
     },
   ],
   achievements: [
     {
-      emoji: "🥇",
+      emoji: "🏆",
       type: "Winner",
       event: "Monad Blitz Pune",
       project: "Penguin Protocol",
@@ -346,38 +351,38 @@ export const portfolioData: PortfolioData = {
       emoji: "⚡",
       type: "Demo Day",
       event: "Starknet Outpost",
-      project: "",
-      description: "Web3 project participation",
+      description: "Web3 project / demo-day participation",
     },
     {
       emoji: "🎤",
       type: "Startup Weekend",
-      event: "AIBoomi · Pune",
+      event: "AIBoomi — Pune",
       project: "VoiceAds",
       description: "AI voice advertising MVP",
     },
   ],
   interests: [
+    { label: "AI Engineering" },
+    { label: "Generative AI" },
     { label: "AI Agents" },
     { label: "Foundation Models" },
-    { label: "LLMs" },
-    { label: "Generative AI" },
     { label: "Deep Learning" },
     { label: "Reinforcement Learning" },
     { label: "Computer Vision" },
     { label: "NLP" },
     { label: "AI Systems" },
     { label: "AGI" },
+    { label: "Product Design" },
+    { label: "Web3" },
   ],
   movingTextPhrases: [
     "BUILDING AI PRODUCTS",
     "SHIPPING FULL-STACK SYSTEMS",
     "EXPERIMENTING WITH NEW IDEAS",
     "AI × SOFTWARE × PRODUCT",
-    "ZERO TO SHIPPED",
   ],
   contact: {
-    headline: "LET'S BUILD SOMETHING.",
+    headline: "Let's build something.",
     prompt:
       "Have an interesting project, hackathon, collaboration or opportunity?",
     calUrl: "https://cal.com/pradnyesh",
@@ -385,6 +390,6 @@ export const portfolioData: PortfolioData = {
   },
   footer: {
     name: "Pradnyesh S",
-    year: 2025,
+    year: 2026,
   },
 };

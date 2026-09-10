@@ -9,13 +9,13 @@ export default function MovingText() {
 
   if (shouldReduceMotion) {
     return (
-      <div className="border-y border-[var(--edge)] screen-line-bottom px-5 py-2 overflow-hidden select-none">
-        <div className="flex items-center justify-center gap-4 font-mono text-[10px] tracking-[0.15em] text-[var(--muted-foreground)] uppercase">
-          {movingTextPhrases.slice(0, 3).map((phrase, idx) => (
+      <div className="relative border-y border-edge py-2 overflow-hidden select-none screen-line-before screen-line-after before:content-none after:content-none">
+        <div className="flex items-center justify-center gap-3 font-mono text-[10px] tracking-[0.15em] text-[var(--muted-foreground)] uppercase">
+          {movingTextPhrases.slice(0, 2).map((phrase, idx) => (
             <span key={idx} className="flex items-center gap-3">
               <span>{phrase}</span>
-              {idx < 2 && (
-                <span className="text-[var(--muted-foreground)]/30">—</span>
+              {idx < 1 && (
+                <span className="text-[var(--muted-foreground)]/30">·</span>
               )}
             </span>
           ))}
@@ -28,18 +28,16 @@ export default function MovingText() {
 
   return (
     <div
-      className="border-y border-[var(--edge)] screen-line-bottom py-2 overflow-hidden select-none"
+      className="relative border-y border-edge py-2.5 overflow-hidden select-none screen-line-before screen-line-after before:content-none after:content-none before:absolute before:-left-[100vw] before:h-full before:w-[200vw] before:bg-[repeating-linear-gradient(315deg,var(--edge)_0,var(--edge)_1px,transparent_0,transparent_50%)] before:bg-[length:10px_10px] before:z-0 before:pointer-events-none"
       aria-label="Status ticker"
     >
-      <div className="flex w-max animate-marquee items-center font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--muted-foreground)]/60">
+      <div className="relative z-10 flex w-max animate-marquee items-center font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--muted-foreground)]">
         {tickerItems.map((phrase, idx) => (
           <span key={idx} className="flex items-center shrink-0">
-            <span className="px-4 hover:text-[var(--foreground)] transition-colors duration-300">
+            <span className="px-6 hover:text-[var(--foreground)] transition-colors duration-300">
               {phrase}
             </span>
-            <span className="text-[var(--muted-foreground)]/20 select-none">
-              ·
-            </span>
+            <span className="text-[var(--edge)] select-none">·</span>
           </span>
         ))}
       </div>

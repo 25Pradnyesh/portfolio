@@ -2,8 +2,16 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { MapPin, Clock, Mail, ArrowUpRight } from "lucide-react";
-import { GithubIcon, LinkedinIcon, XIcon, CalIcon, ResumeIcon } from "@/components/Icons";
+import {
+  CodeXml,
+  MapPin,
+  GraduationCap,
+  Clock,
+  Sparkles,
+  Mail,
+  Calendar,
+} from "lucide-react";
+import { PixelPSLogo } from "@/components/Icons";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Overview() {
@@ -28,119 +36,149 @@ export default function Overview() {
   }, []);
 
   return (
-    <section className="screen-line-bottom">
-      {/* Profile Row */}
-      <div className="flex items-start gap-4 sm:gap-5 px-5 pt-8 pb-6">
-        {/* Profile Image */}
-        <div className="shrink-0">
-          <div className="size-16 sm:size-20 rounded-full overflow-hidden border border-[var(--edge)]">
+    <div className="w-full">
+      {/* 1. HERO / GRID AREA - Subtle Dotted Field, Centered Bold Pixel "PS" */}
+      <div className="select-none h-44 sm:h-52 border-x border-edge flex items-center justify-center text-[var(--foreground)] screen-line-before before:-top-px dot-grid relative">
+        <div className="relative inline-block">
+          <PixelPSLogo className="h-16 w-auto sm:h-18 text-white" />
+        </div>
+      </div>
+
+      {/* 2. PROFILE ROW - Snug Editorial Layout, 50% Overlapping Avatar */}
+      <div className="flex border-x border-b border-edge bg-[var(--background)]">
+        {/* Left Column: Snug container hugging the Avatar */}
+        <div className="shrink-0 border-r border-edge flex items-center justify-center px-4 sm:px-6 py-2">
+          <div className="size-28 sm:size-34 rounded-full ring-1 ring-zinc-800 ring-offset-2 ring-offset-zinc-950 relative -mt-14 sm:-mt-17 z-10 overflow-hidden select-none bg-[var(--background)] shadow-sm">
             <Image
               src={personal.profileImage}
               alt={personal.name}
-              width={80}
-              height={80}
-              className="object-cover object-center size-full pfp-image"
+              width={140}
+              height={140}
+              className="size-full rounded-full object-cover pfp-image"
               style={{ filter: "none", opacity: 1 }}
               priority
             />
           </div>
         </div>
 
-        {/* Identity */}
-        <div className="flex-1 min-w-0 pt-0.5">
-          <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-[var(--foreground)] leading-tight">
-            {personal.name}
-          </h1>
-          <p className="font-mono text-xs text-[var(--muted-foreground)] mt-0.5 tracking-wide">
-            {personal.title}
-          </p>
-          <p className="text-[13px] text-[var(--muted-foreground)] mt-2.5 leading-relaxed max-w-sm">
-            &ldquo;{personal.bio}&rdquo;
-          </p>
+        {/* Right Column: Close-alignment 3-tier Editorial Details */}
+        <div className="flex flex-1 flex-col justify-between min-w-0">
+          {/* Top tier: Technical role indicator */}
+          <div className="flex items-end pb-1.5 pt-2 pl-4 sm:pl-5 pr-4">
+            <div className="line-clamp-1 font-mono text-[11px] sm:text-xs text-zinc-500 select-none">
+              AI Engineer &amp; Full-Stack Developer
+            </div>
+          </div>
+
+          {/* Middle tier: Name + Subtle Green Status Indicator */}
+          <div className="border-t border-edge">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 py-1.5 pl-4 sm:pl-5 pr-4">
+              <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+                {personal.name}
+              </h1>
+              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 select-none">
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Available / Building
+              </span>
+            </div>
+
+            {/* Bottom tier: Bio statement (Clean Sans-serif) */}
+            <div className="border-t border-edge py-2 pl-4 sm:pl-5 pr-4">
+              <p className="font-sans text-xs sm:text-[13px] text-zinc-400 leading-normal">
+                {personal.bio}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Compact metadata row */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 px-5 pb-4 font-mono text-[11px] text-[var(--muted-foreground)]">
-        <span className="inline-flex items-center gap-1.5">
-          <MapPin className="size-3 shrink-0" />
-          {personal.location}
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <Clock className="size-3 shrink-0" />
-          {currentTime || "--:--"} IST
-        </span>
-        <span className="inline-flex items-center gap-1">
-          <span className="relative flex h-1.5 w-1.5 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-          </span>
-          <span className="text-emerald-500">{personal.status}</span>
-        </span>
-      </div>
+      {/* 3. INFORMATION AREA - Compact Structured 2-Column Metadata Grid */}
+      <section
+        data-slot="panel"
+        className="screen-line-before border-x border-edge"
+      >
+        <h2 className="sr-only">Overview &amp; Details</h2>
+        <div className="grid grid-cols-1 md:grid-cols-12 border-b border-edge">
+          {/* LEFT COLUMN: 7 cols (~58% width) with vertical right border */}
+          <div className="md:col-span-7 p-4 sm:p-5 md:border-r border-edge space-y-2.5 sm:space-y-3">
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <CodeXml className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <p className="text-zinc-200">
+                AI Engineer &amp; Full-Stack Developer
+              </p>
+            </div>
 
-      {/* Quick links row */}
-      <div className="flex items-center gap-1 px-5 pb-5 flex-wrap">
-        <a
-          href={personal.socials.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="GitHub"
-        >
-          <GithubIcon className="size-3" />
-          GitHub
-        </a>
-        <a
-          href={personal.socials.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="LinkedIn"
-        >
-          <LinkedinIcon className="size-3" />
-          LinkedIn
-        </a>
-        <a
-          href={personal.socials.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="X"
-        >
-          <XIcon className="size-2.5" />
-          X
-        </a>
-        <a
-          href={personal.socials.cal}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="Cal.com"
-        >
-          <CalIcon className="size-3" />
-          Cal.com
-        </a>
-        <a
-          href={`mailto:${personal.email}`}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="Email"
-        >
-          <Mail className="size-3" />
-          Email
-        </a>
-        <a
-          href={personal.socials.resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] font-mono text-[var(--muted-foreground)] hover:text-[var(--foreground)] border border-[var(--edge)] hover:border-[var(--muted-foreground)]/50 transition-all rounded-sm"
-          title="Resume"
-        >
-          <ResumeIcon className="size-3" />
-          Resume
-          <ArrowUpRight className="size-2.5" />
-        </a>
-      </div>
-    </section>
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <MapPin className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <p className="text-zinc-200">
+                {personal.location}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <GraduationCap className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <p className="text-zinc-200">
+                Savitribai Phule Pune University
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: 5 cols (~42% width) */}
+          <div className="md:col-span-5 p-4 sm:p-5 border-t md:border-t-0 border-edge space-y-2.5 sm:space-y-3">
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Clock className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <p className="text-zinc-200">
+                <span>{currentTime || "--:--"}</span>
+                <span className="text-zinc-500">{" // IST"}</span>
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Sparkles className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <p className="text-zinc-200">
+                Currently building
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Mail className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <a
+                href={`mailto:${personal.email}`}
+                className="text-zinc-200 hover:text-white truncate transition-colors"
+                title={personal.email}
+              >
+                {personal.email}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Calendar className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              </div>
+              <a
+                href={personal.socials.cal}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-200 hover:text-white transition-colors"
+              >
+                cal.com/pradnyesh
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

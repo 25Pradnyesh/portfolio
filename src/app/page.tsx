@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Overview from "@/components/Overview";
-import MovingText from "@/components/MovingText";
 import SocialLinks from "@/components/SocialLinks";
 import About from "@/components/About";
 import Contributions from "@/components/Contributions";
@@ -16,51 +15,50 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navbar />
 
-      <main className="mx-auto max-w-[720px]">
-        {/* 1. Overview / Hero */}
-        <Overview />
+      <main className="max-w-screen overflow-x-hidden px-2">
+        <div className="mx-auto md:max-w-3xl">
+          {/* Hero / Overview / Profile / Info */}
+          <Overview />
 
-        {/* Moving Text Separator */}
-        <MovingText />
+          {/* Social Links Grid */}
+          <SocialLinks />
 
-        {/* 2. Social Links */}
-        <SocialLinks />
+          {/* About */}
+          <About />
 
-        {/* 3. About */}
-        <About />
+          {/* GitHub Contributions */}
+          <Contributions />
 
-        {/* 4. GitHub Contributions */}
-        <Contributions />
+          {/* Stack */}
+          <Stack />
 
-        {/* 5. Stack */}
-        <Stack />
+          {/* Experience */}
+          <Experience />
 
-        {/* 6. Experience / Capabilities */}
-        <Experience />
+          {/* Education */}
+          <Education />
 
-        {/* 7. Education */}
-        <Education />
+          {/* Projects */}
+          <Projects />
 
-        {/* 8. Projects */}
-        <Projects />
+          {/* Honors & Awards */}
+          <Awards />
 
-        {/* 9. Honors & Awards */}
-        <Awards />
+          {/* Things I'm Exploring */}
+          <Interests />
 
-        {/* 10. Things I'm Exploring */}
-        <Interests />
+          {/* Contact */}
+          <Contact />
 
-        {/* 11. Contact */}
-        <Contact />
-
-        {/* 12. Footer */}
-        <Footer />
+          {/* Footer */}
+          <Footer />
+        </div>
       </main>
 
-      {/* Scroll to Top */}
+      {/* Scroll to Top Button */}
       <ScrollToTop />
     </div>
   );
