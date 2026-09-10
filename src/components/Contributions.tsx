@@ -24,7 +24,6 @@ export default function Contributions() {
   const [loading, setLoading] = useState(true);
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
 
-  // Fetch real GitHub contribution data via the public contributions page
   useEffect(() => {
     const username = "25Pradnyesh";
 
@@ -38,7 +37,6 @@ export default function Contributions() {
 
         const data = await response.json();
 
-        // Parse the API response into our format
         const contributions: ContributionDay[] = data.contributions.map(
           (day: { date: string; count: number; level: number }) => ({
             date: day.date,
@@ -47,11 +45,10 @@ export default function Contributions() {
           })
         );
 
-        // Group into weeks (7 days per week, starting Sunday)
+        // Group into weeks
         const weeks: ContributionWeek[] = [];
         let currentWeek: ContributionDay[] = [];
 
-        // Pad beginning to align with weekday
         const firstDate = new Date(contributions[0]?.date);
         const startDay = firstDate.getDay();
         for (let i = 0; i < startDay; i++) {
@@ -77,7 +74,6 @@ export default function Contributions() {
 
         setGithubData({ weeks, totalContributions });
       } catch {
-        // Fallback: generate placeholder grid
         generateFallbackGrid();
       } finally {
         setLoading(false);
@@ -90,7 +86,6 @@ export default function Contributions() {
       const oneYearAgo = new Date(now);
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
-      // Align to Sunday
       const startDate = new Date(oneYearAgo);
       startDate.setDate(startDate.getDate() - startDate.getDay());
 
@@ -101,16 +96,13 @@ export default function Contributions() {
         const week: ContributionDay[] = [];
         for (let d = 0; d < 7 && current <= now; d++) {
           const dateStr = current.toISOString().split("T")[0];
-          // Generate realistic-looking but clearly approximate data
           const dayOfWeek = current.getDay();
           const weekNum = weeks.length;
           let count = 0;
           let level = 0;
 
-          // Weighted randomness based on position
           const seed = (weekNum * 7 + dayOfWeek * 13 + 3) % 23;
           if (dayOfWeek === 0 || dayOfWeek === 6) {
-            // weekends: less active
             if (seed > 18) {
               count = seed % 4 + 1;
               level = 1;
@@ -141,7 +133,7 @@ export default function Contributions() {
     fetchContributions();
   }, []);
 
-  // Generate month labels
+  // Generate month labels with correct positioning
   const monthLabels = useMemo(() => {
     if (!githubData?.weeks.length) return [];
 
@@ -191,9 +183,8 @@ export default function Contributions() {
       <div className="px-5 py-3 border-b border-[var(--edge)] screen-line-bottom flex items-center justify-between">
         <span className="section-heading">GitHub Contributions</span>
         {githubData && (
-          <span className="font-mono text-[11px] text-[var(--muted-foreground)]">
-            {githubData.totalContributions.toLocaleString()} contributions in
-            the last year
+          <span className="font-mono text-[10px] text-[var(--muted-foreground)]">
+            {githubData.totalContributions.toLocaleString()} in the last year
           </span>
         )}
       </div>
@@ -208,30 +199,13 @@ export default function Contributions() {
           </div>
         ) : (
           <div className="min-w-[680px]">
-            {/* Month labels */}
-            <div className="flex ml-[30px] mb-1.5">
+            {/* Month labels row */}
+            <div className="relative h-4 mb-1 ml-[28px]">
               {monthLabels.map((m, i) => (
                 <span
                   key={i}
-                  className="font-mono text-[10px] text-[var(--muted-foreground)] absolute"
-                  style={{
-                    position: "relative",
-                    left: `${m.colIndex * 13}px`,
-                    marginLeft: i === 0 ? 0 : undefined,
-                  }}
-                >
-                  {m.label}
-                </span>
-              ))}
-            </div>
-
-            {/* Fixed month label row */}
-            <div className="relative h-3 mb-1 ml-[30px]">
-              {monthLabels.map((m, i) => (
-                <span
-                  key={i}
-                  className="font-mono text-[10px] text-[var(--muted-foreground)] absolute whitespace-nowrap"
-                  style={{ left: `${m.colIndex * 13}px` }}
+                  className="font-mono text-[9px] text-[var(--muted-foreground)] absolute whitespace-nowrap"
+                  style={{ left: `${m.colIndex * 14}px` }}
                 >
                   {m.label}
                 </span>
@@ -239,13 +213,14 @@ export default function Contributions() {
             </div>
 
             {/* Grid with weekday labels */}
-            <div className="flex gap-0">
+            <div className="flex">
               {/* Weekday labels */}
-              <div className="flex flex-col gap-[3px] mr-1.5 shrink-0">
+              <div className="flex flex-col gap-[3px] mr-1 shrink-0">
                 {weekdayLabels.map((label, idx) => (
                   <div
                     key={idx}
-                    className="h-[11px] flex items-center justify-end pr-0.5"
+                    className="h-[11px] flex items-center justify-end"
+                    style={{ width: "24px" }}
                   >
                     <span className="font-mono text-[9px] text-[var(--muted-foreground)] leading-none">
                       {label}
@@ -283,8 +258,8 @@ export default function Contributions() {
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-between mt-2 font-mono text-[10px] text-[var(--muted-foreground)] ml-[30px]">
+            {/* Footer row */}
+            <div className="flex items-center justify-between mt-2.5 font-mono text-[9px] text-[var(--muted-foreground)] ml-[28px]">
               <a
                 href={personal.socials.github}
                 target="_blank"
@@ -296,12 +271,12 @@ export default function Contributions() {
 
               <div className="flex items-center gap-1.5">
                 <span>Less</span>
-                <div className="flex gap-0.5 items-center">
-                  <div className="size-[11px] rounded-[2px] contrib-0" />
-                  <div className="size-[11px] rounded-[2px] contrib-1" />
-                  <div className="size-[11px] rounded-[2px] contrib-2" />
-                  <div className="size-[11px] rounded-[2px] contrib-3" />
-                  <div className="size-[11px] rounded-[2px] contrib-4" />
+                <div className="flex gap-[2px] items-center">
+                  <div className="size-[10px] rounded-[2px] contrib-0" />
+                  <div className="size-[10px] rounded-[2px] contrib-1" />
+                  <div className="size-[10px] rounded-[2px] contrib-2" />
+                  <div className="size-[10px] rounded-[2px] contrib-3" />
+                  <div className="size-[10px] rounded-[2px] contrib-4" />
                 </div>
                 <span>More</span>
               </div>
