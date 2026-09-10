@@ -4,18 +4,25 @@
   --background: #0a0a0b;
   --foreground: #ededed;
   --muted: #141416;
-  --muted-foreground: #a0a0a8;
+  --muted-foreground: #8a8a96;
   --edge: #1e1e22;
-  --accent: #3b82f6;
+  --accent: #ededed;
+  --accent-muted: #a0a0a8;
+
+  /* Spacing system */
+  --section-gap: 0px;
+  --content-px: 20px;
+  --content-py: 16px;
 }
 
 .light {
-  --background: #ffffff;
+  --background: #fafaf9;
   --foreground: #0a0a0b;
-  --muted: #f5f5f5;
-  --muted-foreground: #6b6b76;
-  --edge: #e5e5e8;
-  --accent: #2563eb;
+  --muted: #f0f0ee;
+  --muted-foreground: #64645e;
+  --edge: #e0e0dc;
+  --accent: #0a0a0b;
+  --accent-muted: #6b6b76;
 }
 
 html {
@@ -35,6 +42,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02", "cv01";
 }
 
 ::selection {
@@ -42,7 +50,7 @@ body {
   color: var(--background);
 }
 
-/* Full-width screen lines inspired by the reference */
+/* Full-width screen lines */
 .screen-line-top {
   position: relative;
 }
@@ -73,44 +81,23 @@ body {
   z-index: 1;
 }
 
-/* Hatching pattern */
-.hatch-pattern {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 4px,
-    rgba(255, 255, 255, 0.03) 4px,
-    rgba(255, 255, 255, 0.03) 5px
-  );
-}
-
-.light .hatch-pattern {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 4px,
-    rgba(0, 0, 0, 0.04) 4px,
-    rgba(0, 0, 0, 0.04) 5px
-  );
-}
-
 /* Dot grid for banner */
 .dot-grid {
   background-image: radial-gradient(
-    rgba(255, 255, 255, 0.08) 1px,
+    rgba(255, 255, 255, 0.06) 1px,
     transparent 0
   );
-  background-size: 16px 16px;
+  background-size: 20px 20px;
 }
 
 .light .dot-grid {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 0);
-  background-size: 16px 16px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: var(--background);
@@ -120,7 +107,7 @@ body {
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: var(--muted-foreground);
 }
 
 /* Moving Text Marquee */
@@ -136,7 +123,7 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 35s linear infinite;
   will-change: transform;
 }
 
@@ -150,21 +137,92 @@ body {
   }
 }
 
-/* Timeline dotted line */
-.timeline-line {
-  position: relative;
-}
-.timeline-line::before {
-  content: "";
-  position: absolute;
-  left: 19px;
-  top: 32px;
-  bottom: 0;
-  width: 1px;
-  border-left: 1px dashed var(--edge);
-}
-
 /* Border utilities */
 .border-edge {
   border-color: var(--edge);
+}
+
+/* Section heading style */
+.section-heading {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+}
+
+/* Profile image - always full color */
+.pfp-image {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.light .pfp-image {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* GitHub contribution colors */
+.contrib-0 {
+  background-color: var(--muted);
+}
+.contrib-1 {
+  background-color: #0e4429;
+}
+.contrib-2 {
+  background-color: #006d32;
+}
+.contrib-3 {
+  background-color: #26a641;
+}
+.contrib-4 {
+  background-color: #39d353;
+}
+
+.light .contrib-1 {
+  background-color: #9be9a8;
+}
+.light .contrib-2 {
+  background-color: #40c463;
+}
+.light .contrib-3 {
+  background-color: #30a14e;
+}
+.light .contrib-4 {
+  background-color: #216e39;
+}
+
+/* Contribution tooltip */
+.contrib-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: var(--font-geist-mono), monospace;
+  background-color: var(--foreground);
+  color: var(--background);
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.contrib-cell:hover .contrib-tooltip {
+  opacity: 1;
+}
+
+.contrib-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: var(--foreground) transparent transparent transparent;
 }

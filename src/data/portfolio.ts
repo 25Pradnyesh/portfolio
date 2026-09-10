@@ -14,6 +14,7 @@ export interface AchievementItem {
   type: string;
   event: string;
   project: string;
+  description?: string;
 }
 
 export interface ExperienceItem {
@@ -153,56 +154,56 @@ export const portfolioData: PortfolioData = {
   },
   skills: [
     {
-      category: "AI",
-      skills: ["Python", "Generative AI", "LLMs", "AI APIs", "AI Agents"],
+      category: "Languages",
+      skills: ["Python", "JavaScript", "TypeScript", "C++", "Java"],
     },
     {
       category: "Frontend",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      skills: ["React", "Next.js", "Tailwind CSS"],
     },
     {
       category: "Backend",
-      skills: ["Node.js", "FastAPI", "Supabase"],
+      skills: ["Node.js", "FastAPI"],
     },
     {
-      category: "Product",
-      skills: ["Figma", "UI/UX", "Prototyping"],
+      category: "AI",
+      skills: ["Generative AI", "LLMs", "AI Agents", "Computer Vision", "NLP"],
     },
     {
-      category: "Web3",
-      skills: ["Smart Contracts", "Blockchain", "Web3 Ecosystems"],
+      category: "Database",
+      skills: ["Supabase", "SQL"],
     },
     {
       category: "Tools",
-      skills: ["Git", "GitHub", "Framer Motion", "VS Code"],
+      skills: ["Git", "GitHub", "VS Code"],
     },
   ],
   experience: [
     {
-      role: "Software Development",
-      duration: "~1–1.5 years",
-      description:
-        "Hands-on product development and independent projects.",
-      tags: ["TypeScript", "Next.js", "System Architecture", "Full-Stack"],
-    },
-    {
       role: "AI / GenAI",
       duration: "~1 year",
       description:
-        "Practical experience building AI-powered products and prototypes.",
+        "Building AI-powered products, integrating LLMs, prompt engineering, and prototyping intelligent systems.",
       tags: ["LLMs", "FastAPI", "Prompt Engineering", "Python", "AI APIs"],
+    },
+    {
+      role: "Full-Stack Development",
+      duration: "~1–1.5 years",
+      description:
+        "End-to-end product development — architecture, frontend, backend, and deployment.",
+      tags: ["TypeScript", "Next.js", "System Architecture", "Full-Stack"],
     },
     {
       role: "Web Development",
       duration: "~1–1.5 years",
-      description: "React · Next.js · Node.js · TypeScript",
+      description: "React, Next.js, Node.js, and TypeScript applications.",
       tags: ["React", "Next.js", "Node.js", "Tailwind CSS"],
     },
     {
       role: "Web3",
       duration: "~6–12 months",
       description:
-        "Web3 ecosystems, smart-contract/product experiences and hackathons.",
+        "Web3 ecosystems, smart-contract integration, and hackathon projects.",
       tags: ["Smart Contracts", "Ecosystems", "Web3 UI", "Hackathons"],
     },
     {
@@ -217,16 +218,30 @@ export const portfolioData: PortfolioData = {
       ],
     },
     {
-      role: "Video / Content",
+      role: "Video Editing",
       duration: "1+ year",
-      description: "Client and agency editing work.",
+      description: "Client and agency editing work, content production.",
       tags: ["Content Production", "Visual Storytelling", "Editing"],
+    },
+    {
+      role: "Hackathons",
+      duration: "Multiple events",
+      description:
+        "Competed and shipped products at hackathons across AI, Web3 and full-stack.",
+      tags: ["Rapid Prototyping", "Team Building", "Product Shipping"],
+    },
+    {
+      role: "Independent Projects",
+      duration: "Ongoing",
+      description:
+        "Self-initiated products and experiments across domains.",
+      tags: ["Product Thinking", "Shipping", "Experimentation"],
     },
   ],
   education: [
     {
       id: "sppu-be",
-      institution: "Savitribai Phule Pune University (SPPU)",
+      institution: "Savitribai Phule Pune University",
       degree: "B.E. — Electronics & Computer Engineering",
       period: "2023 – 2027",
     },
@@ -254,6 +269,29 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/25Pradnyesh/Travel-AI-",
     },
     {
+      id: "penguin-protocol",
+      title: "Penguin Protocol",
+      period: "2024",
+      achievement: "Winner — Monad Blitz Pune",
+      description: "Decentralized AI Investment Syndicate.",
+      technologies: ["Monad", "Web3", "Smart Contracts", "AI Agents"],
+    },
+    {
+      id: "reclaim",
+      title: "Reclaim",
+      period: "2024",
+      achievement: "WeMakeDevs FutureStack GenAI Hackathon",
+      description:
+        "AI-powered phone addiction management application. Built and shipped in 6 days during the hackathon.",
+      technologies: [
+        "Next.js 14",
+        "Tailwind CSS",
+        "Supabase",
+        "Cerebras API",
+        "Llama",
+      ],
+    },
+    {
       id: "vertifarm",
       title: "VertiFarm",
       period: "2024",
@@ -272,70 +310,71 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/25Pradnyesh/Design-Resource-Vault",
     },
     {
-      id: "penguin-protocol",
-      title: "Penguin Protocol",
+      id: "voiceads",
+      title: "VoiceAds",
       period: "2024",
-      achievement: "Winner — Monad Blitz Pune",
-      description: "Decentralized AI Investment Syndicate.",
-      technologies: ["Monad", "Web3", "Smart Contracts", "AI Agents"],
+      achievement: "AIBoomi Startup Weekend Pune",
+      description:
+        "AI voice advertising MVP built during startup weekend.",
+      technologies: ["AI", "Voice", "MVP"],
     },
     {
-      id: "reclaim",
-      title: "Reclaim",
+      id: "starknet-outpost",
+      title: "Starknet Outpost Demo Day",
       period: "2024",
-      achievement: "WeMakeDevs FutureStack GenAI Hackathon",
       description:
-        "AI-powered phone addiction management application. Built and shipped in 6 days during the hackathon.",
-      technologies: [
-        "Next.js 14",
-        "Tailwind",
-        "Supabase",
-        "Cerebras API",
-        "Llama",
-      ],
+        "Web3 project participation and demo-day presentation.",
+      technologies: ["Starknet", "Web3", "Smart Contracts"],
     },
   ],
   achievements: [
     {
-      emoji: "🏆",
+      emoji: "🥇",
       type: "Winner",
       event: "Monad Blitz Pune",
       project: "Penguin Protocol",
+      description: "Decentralized AI Investment Syndicate",
     },
     {
       emoji: "🚀",
       type: "Hackathon",
       event: "WeMakeDevs FutureStack GenAI Hackathon",
       project: "Reclaim",
+      description: "Built and shipped in 6 days",
     },
     {
       emoji: "⚡",
       type: "Demo Day",
       event: "Starknet Outpost",
       project: "",
+      description: "Web3 project participation",
     },
     {
       emoji: "🎤",
       type: "Startup Weekend",
       event: "AIBoomi · Pune",
       project: "VoiceAds",
+      description: "AI voice advertising MVP",
     },
   ],
   interests: [
-    { label: "AI Engineering" },
-    { label: "Generative AI" },
     { label: "AI Agents" },
     { label: "Foundation Models" },
-    { label: "Web3" },
-    { label: "Product Design" },
-    { label: "Creative Technology" },
+    { label: "LLMs" },
+    { label: "Generative AI" },
+    { label: "Deep Learning" },
+    { label: "Reinforcement Learning" },
+    { label: "Computer Vision" },
+    { label: "NLP" },
+    { label: "AI Systems" },
+    { label: "AGI" },
   ],
   movingTextPhrases: [
     "BUILDING AI PRODUCTS",
     "SHIPPING FULL-STACK SYSTEMS",
     "EXPERIMENTING WITH NEW IDEAS",
-    "BUILDING INTELLIGENT PRODUCTS",
     "AI × SOFTWARE × PRODUCT",
+    "ZERO TO SHIPPED",
   ],
   contact: {
     headline: "LET'S BUILD SOMETHING.",

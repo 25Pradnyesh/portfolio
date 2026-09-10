@@ -1,6 +1,5 @@
 "use client";
 
-import { Award, ChevronsUpDown } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Awards() {
@@ -9,13 +8,11 @@ export default function Awards() {
   return (
     <section id="awards" className="screen-line-bottom">
       {/* Section Header */}
-      <div className="px-4 sm:px-5 py-3.5 border-b border-[var(--edge)] screen-line-bottom">
-        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-          Honors & Awards{" "}
-          <sup className="font-mono text-xs text-[var(--muted-foreground)] font-normal">
-            ({achievements.length})
-          </sup>
-        </h2>
+      <div className="px-5 py-3 border-b border-[var(--edge)] screen-line-bottom flex items-center justify-between">
+        <span className="section-heading">Honors & Awards</span>
+        <span className="font-mono text-[10px] text-[var(--muted-foreground)]">
+          {achievements.length}
+        </span>
       </div>
 
       {/* Awards List */}
@@ -23,28 +20,39 @@ export default function Awards() {
         {achievements.map((item, index) => (
           <div
             key={index}
-            className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-[var(--edge)] last:border-b-0 hover:bg-[var(--muted)]/40 transition-colors"
+            className={`flex items-start gap-3 px-5 py-4 border-b border-[var(--edge)] last:border-b-0 hover:bg-[var(--muted)]/30 transition-colors ${
+              index === 0 ? "bg-[var(--muted)]/10" : ""
+            }`}
           >
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="flex size-6 shrink-0 items-center justify-center rounded border border-[var(--edge)] bg-[var(--muted)] text-[var(--muted-foreground)]">
-                <Award className="size-3" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-[var(--foreground)] truncate">
-                  {item.event}
-                </h3>
-                <p className="font-mono text-xs text-[var(--muted-foreground)] flex items-center gap-1.5">
-                  <span>{item.type}</span>
+            {/* Emoji */}
+            <span className="text-base shrink-0 pt-0.5 leading-none" aria-hidden="true">
+              {item.emoji}
+            </span>
+
+            {/* Content */}
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <h3 className={`text-[13px] font-medium leading-tight ${
+                    index === 0
+                      ? "text-[var(--foreground)]"
+                      : "text-[var(--foreground)]"
+                  }`}>
+                    {item.type} — {item.event}
+                  </h3>
                   {item.project && (
-                    <>
-                      <span className="text-[var(--edge)]">|</span>
-                      <span>{item.project}</span>
-                    </>
+                    <p className="font-mono text-[11px] text-[var(--muted-foreground)] mt-0.5">
+                      {item.project}
+                    </p>
                   )}
-                </p>
+                  {item.description && (
+                    <p className="text-[11px] text-[var(--muted-foreground)]/70 mt-0.5">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
-            <ChevronsUpDown className="size-3.5 text-[var(--muted-foreground)] shrink-0" />
           </div>
         ))}
       </div>

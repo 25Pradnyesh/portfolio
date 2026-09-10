@@ -8,31 +8,29 @@ export default function Stack() {
   return (
     <section id="stack" className="screen-line-bottom">
       {/* Section Header */}
-      <div className="px-4 sm:px-5 py-3.5 border-b border-[var(--edge)] screen-line-bottom">
-        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-          Stack
-        </h2>
+      <div className="px-5 py-3 border-b border-[var(--edge)] screen-line-bottom">
+        <span className="section-heading">Stack</span>
       </div>
 
-      {/* Stack items as compact grouped tags */}
-      <div className="px-4 sm:px-5 py-5 border-b border-[var(--edge)] space-y-5">
-        {skills.map((group) => (
-          <div key={group.category} className="space-y-2">
-            <h3 className="font-mono text-xs font-medium uppercase tracking-wider text-[var(--muted-foreground)]">
-              {group.category}
-            </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {group.skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="font-mono text-xs px-2 py-1 rounded border border-[var(--edge)] bg-[var(--muted)] text-[var(--foreground)] hover:border-[var(--muted-foreground)]/50 transition-colors select-none"
-                >
-                  {skill}
-                </span>
-              ))}
+      {/* Stack grid */}
+      <div className="border-b border-[var(--edge)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3">
+          {skills.map((group, idx) => (
+            <div
+              key={group.category}
+              className={`px-5 py-4 border-b border-[var(--edge)] ${
+                (idx + 1) % 3 !== 0 ? "sm:border-r" : ""
+              } ${idx % 2 === 0 ? "border-r sm:border-r" : ""}`}
+            >
+              <h3 className="font-mono text-[10px] font-medium uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
+                {group.category}
+              </h3>
+              <p className="text-[13px] text-[var(--foreground)] leading-relaxed">
+                {group.skills.join(" · ")}
+              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

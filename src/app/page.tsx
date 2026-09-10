@@ -19,44 +19,44 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
 
-      <main className="mx-auto max-w-[768px] px-0">
-        {/* Profile / Hero Overview */}
+      <main className="mx-auto max-w-[720px]">
+        {/* 1. Overview / Hero */}
         <Overview />
 
-        {/* Moving Text Ticker */}
+        {/* Moving Text Separator */}
         <MovingText />
 
-        {/* Social Links Grid */}
+        {/* 2. Social Links */}
         <SocialLinks />
 
-        {/* About Section */}
+        {/* 3. About */}
         <About />
 
-        {/* GitHub Contributions */}
+        {/* 4. GitHub Contributions */}
         <Contributions />
 
-        {/* Stack / Technologies */}
+        {/* 5. Stack */}
         <Stack />
 
-        {/* Experience */}
+        {/* 6. Experience / Capabilities */}
         <Experience />
 
-        {/* Education */}
+        {/* 7. Education */}
         <Education />
 
-        {/* Projects */}
+        {/* 8. Projects */}
         <Projects />
 
-        {/* Honors & Awards */}
+        {/* 9. Honors & Awards */}
         <Awards />
 
-        {/* Interests / Exploring */}
+        {/* 10. Things I'm Exploring */}
         <Interests />
 
-        {/* Contact */}
+        {/* 11. Contact */}
         <Contact />
 
-        {/* Footer */}
+        {/* 12. Footer */}
         <Footer />
       </main>
 
