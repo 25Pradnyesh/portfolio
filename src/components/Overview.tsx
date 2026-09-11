@@ -91,10 +91,10 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* 2. PROFILE ROW - Spacious Grid-Aligned Architectural Identity Section */}
+      {/* 2. PROFILE ROW - Dedicated Left PFP Column & 3-Tier Right Content Column with Internal Horizontal Dividers */}
       <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[200px_1fr] md:grid-cols-[220px_1fr] border-x border-b border-edge bg-[var(--background)]">
-        {/* Left Column: Avatar Container with natural boundary overlap */}
-        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-4 sm:p-5 relative min-h-[140px] sm:min-h-[155px]">
+        {/* Left Column: Dedicated PFP Column */}
+        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-5 sm:p-6 relative">
           <div className="size-32 sm:size-36 md:size-[144px] rounded-full border border-zinc-800 bg-zinc-950 relative -mt-6 sm:-mt-8 md:-mt-9 z-10 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
             <Image
               src={personal.profileImage}
@@ -108,27 +108,33 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* Right Column: Identity Information reading as one composed block */}
-        <div className="flex flex-col justify-center px-6 sm:px-7 md:px-8 py-5 sm:py-6 min-w-0">
-          {/* Eyebrow / Technical Role */}
-          <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none mb-1">
-            AI Engineer &amp; Full-Stack Developer
+        {/* Right Column: 3-Tier Identity Column with internal horizontal dividers */}
+        <div className="flex flex-col justify-between min-w-0">
+          {/* Tier 1: Role / Eyebrow */}
+          <div className="px-5 sm:px-6 md:px-7 py-3 sm:py-3.5 border-b border-edge flex items-center">
+            <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none">
+              AI Engineer &amp; Full-Stack Developer
+            </div>
           </div>
 
-          {/* Name & Active Status Indicator */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <h1 className="text-2xl sm:text-3xl md:text-[32px] font-semibold tracking-tight text-zinc-50 flex items-center gap-2">
-              <span>Pradnyesh</span>
-              <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
-            </h1>
-            <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-emerald-400 select-none tracking-wider ml-1 sm:ml-1.5">
-              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              BUILDING
-            </span>
+          {/* Tier 2: Dominant Name + Verified Badge + Status */}
+          <div className="px-5 sm:px-6 md:px-7 py-3.5 sm:py-4.5 border-b border-edge flex items-center">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+              <h1 className="text-2xl sm:text-3xl md:text-[32px] font-semibold tracking-tight text-zinc-50 flex items-center gap-2">
+                <span>Pradnyesh</span>
+                <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
+              </h1>
+              <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-emerald-400 select-none tracking-wider ml-1 sm:ml-1.5">
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                BUILDING
+              </span>
+            </div>
           </div>
 
-          {/* Subtitle / Vertically Rolling Tagline */}
-          <VerticalRollingTagline />
+          {/* Tier 3: Vertically Rolling Descriptor */}
+          <div className="px-5 sm:px-6 md:px-7 py-3 sm:py-3.5 flex items-center min-w-0 w-full">
+            <VerticalRollingTagline />
+          </div>
         </div>
       </div>
 
