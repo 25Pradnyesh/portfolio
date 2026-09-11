@@ -9,37 +9,55 @@ export default function MovingText() {
 
   if (shouldReduceMotion) {
     return (
-      <div className="relative border-y border-edge py-2 overflow-hidden select-none screen-line-before screen-line-after before:content-none after:content-none">
-        <div className="flex items-center justify-center gap-3 font-mono text-[10px] tracking-[0.15em] text-[var(--muted-foreground)] uppercase">
-          {movingTextPhrases.slice(0, 2).map((phrase, idx) => (
-            <span key={idx} className="flex items-center gap-3">
-              <span>{phrase}</span>
-              {idx < 1 && (
-                <span className="text-[var(--muted-foreground)]/30">·</span>
-              )}
-            </span>
-          ))}
+      <div className="relative border-y border-edge h-8 sm:h-8.5 flex items-center justify-center overflow-hidden select-none bg-zinc-950/40 screen-line-before screen-line-after">
+        <div className="flex items-center gap-4 font-mono text-[10.5px] sm:text-[11px] tracking-[0.2em] uppercase text-zinc-400">
+          <span>AI × SOFTWARE × PRODUCT</span>
+          <span className="text-zinc-600/60">/</span>
+          <span>BUILDING AI PRODUCTS</span>
+          <span className="text-zinc-600/60">/</span>
+          <span>FULL-STACK SYSTEMS</span>
         </div>
       </div>
     );
   }
 
-  const tickerItems = [...movingTextPhrases, ...movingTextPhrases];
-
   return (
     <div
-      className="relative border-y border-edge py-2.5 overflow-hidden select-none screen-line-before screen-line-after before:content-none after:content-none before:absolute before:-left-[100vw] before:h-full before:w-[200vw] before:bg-[repeating-linear-gradient(315deg,var(--edge)_0,var(--edge)_1px,transparent_0,transparent_50%)] before:bg-[length:10px_10px] before:z-0 before:pointer-events-none"
+      className="relative border-y border-edge h-8 sm:h-8.5 flex items-center overflow-hidden select-none bg-zinc-950/40 screen-line-before screen-line-after"
       aria-label="Status ticker"
     >
-      <div className="relative z-10 flex w-max animate-marquee items-center font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--muted-foreground)]">
-        {tickerItems.map((phrase, idx) => (
-          <span key={idx} className="flex items-center shrink-0">
-            <span className="px-6 hover:text-[var(--foreground)] transition-colors duration-300">
-              {phrase}
+      {/* Subtle diagonal background hatch matching reference */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-25"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(315deg, var(--edge) 0, var(--edge) 1px, transparent 0, transparent 50%)",
+          backgroundSize: "8px 8px",
+        }}
+      />
+
+      {/* Marquee Track: Two identical halves for a 100% seamless, mathematically jump-free loop */}
+      <div className="relative z-10 flex w-max animate-marquee items-center font-mono text-[10.5px] sm:text-[11px] tracking-[0.18em] uppercase text-zinc-400">
+        <div className="flex items-center shrink-0">
+          {movingTextPhrases.map((phrase, idx) => (
+            <span key={`a-${idx}`} className="flex items-center shrink-0">
+              <span className="px-5 hover:text-zinc-200 transition-colors">
+                {phrase}
+              </span>
+              <span className="text-zinc-600/60 select-none">/</span>
             </span>
-            <span className="text-[var(--edge)] select-none">·</span>
-          </span>
-        ))}
+          ))}
+        </div>
+        <div className="flex items-center shrink-0" aria-hidden="true">
+          {movingTextPhrases.map((phrase, idx) => (
+            <span key={`b-${idx}`} className="flex items-center shrink-0">
+              <span className="px-5 hover:text-zinc-200 transition-colors">
+                {phrase}
+              </span>
+              <span className="text-zinc-600/60 select-none">/</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

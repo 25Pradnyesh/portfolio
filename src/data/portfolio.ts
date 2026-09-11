@@ -64,6 +64,9 @@ export interface PortfolioData {
       linkedin: string;
       x: string;
       cal: string;
+      discord?: string;
+      telegram?: string;
+      email?: string;
       resume: string;
     };
   };
@@ -106,6 +109,9 @@ export const portfolioData: PortfolioData = {
       linkedin: "https://www.linkedin.com/in/pradnyesh-s/",
       x: "https://x.com/Pradnyesh_25",
       cal: "https://cal.com/pradnyesh",
+      discord: "https://discord.com/users/1397630514554212554",
+      telegram: "https://t.me/Pradnyesh_25",
+      email: "mailto:workspace.pradnyesh@gmail.com",
       resume: "/resume.pdf",
     },
   },
@@ -123,15 +129,27 @@ export const portfolioData: PortfolioData = {
       type: "external",
     },
     {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/pradnyesh-s/",
+      handle: "in/pradnyesh-s",
+      type: "external",
+    },
+    {
       name: "Cal.com",
       url: "https://cal.com/pradnyesh",
       handle: "cal.com/pradnyesh",
       type: "external",
     },
     {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/pradnyesh-s/",
-      handle: "in/pradnyesh-s",
+      name: "Discord",
+      url: "https://discord.com/users/1397630514554212554",
+      handle: "Discord",
+      type: "external",
+    },
+    {
+      name: "Telegram",
+      url: "https://t.me/Pradnyesh_25",
+      handle: "@Pradnyesh_25",
       type: "external",
     },
     {
@@ -376,10 +394,14 @@ export const portfolioData: PortfolioData = {
     { label: "Web3" },
   ],
   movingTextPhrases: [
-    "BUILDING AI PRODUCTS",
-    "SHIPPING FULL-STACK SYSTEMS",
-    "EXPERIMENTING WITH NEW IDEAS",
     "AI × SOFTWARE × PRODUCT",
+    "BUILDING AI PRODUCTS",
+    "FULL-STACK SYSTEMS",
+    "EXPERIMENTING WITH AGENTS",
+    "SHIPPING FROM ZERO TO ONE",
+    "GENERATIVE AI",
+    "MACHINE LEARNING",
+    "BUILDING WITH CODE",
   ],
   contact: {
     headline: "Let's build something.",
