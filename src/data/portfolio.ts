@@ -95,7 +95,7 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   personal: {
-    name: "Pradnyesh S",
+    name: "Pradnyesh",
     title: "AI Engineer & Full-Stack Developer",
     bio: "I build AI-powered products, full-stack systems, and experimental ideas from zero to shipped.",
     location: "Mumbai · Pune, India",
