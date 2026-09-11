@@ -12,6 +12,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { PixelPSLogo, VerifiedBadge } from "@/components/Icons";
+import RollingLabel from "@/components/RollingLabel";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Overview() {
@@ -86,9 +87,7 @@ export default function Overview() {
 
           {/* Row 3: Tagline (secondary) */}
           <div className="px-3.5 sm:px-4 md:px-5 py-2 sm:py-2.5 flex items-center min-w-0">
-            <p className="font-sans text-xs sm:text-[13px] text-zinc-400 select-none leading-normal truncate">
-              Turning ideas into working software
-            </p>
+            <RollingLabel />
           </div>
         </div>
       </div>
