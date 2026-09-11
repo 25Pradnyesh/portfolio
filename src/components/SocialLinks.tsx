@@ -24,57 +24,57 @@ const socialItems: SocialItem[] = [
   {
     name: "X",
     url: "https://x.com/Pradnyesh_25",
-    icon: <BrandXIcon className="size-3 text-white" />,
-    containerClass: "bg-black border border-zinc-800",
+    icon: <BrandXIcon className="size-3.5 text-zinc-200 group-hover:text-white" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "GitHub",
     url: "https://github.com/25Pradnyesh",
-    icon: <BrandGithubIcon className="size-3.25 text-white" />,
-    containerClass: "bg-zinc-900 border border-zinc-800",
+    icon: <BrandGithubIcon className="size-4 text-zinc-100 group-hover:text-white" />,
+    containerClass: "bg-zinc-900/50 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/pradnyesh-s/",
-    icon: <BrandLinkedinIn className="size-3.25 text-white" />,
-    containerClass: "bg-[#0A66C2] border border-[#0A66C2]/80",
+    icon: <BrandLinkedinIn className="size-3.5 text-[#0A66C2]" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "Cal.com",
     url: "https://cal.com/pradnyesh",
-    icon: <BrandCalIcon className="w-4 h-auto text-white" />,
-    containerClass: "bg-zinc-900 border border-zinc-800",
+    icon: <BrandCalIcon className="w-[21px] h-auto text-zinc-100 group-hover:text-white" />,
+    containerClass: "bg-zinc-900/50 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "Discord",
     url: "https://discord.com/users/1397630514554212554",
-    icon: <BrandDiscordIcon className="size-3.25 text-white" />,
-    containerClass: "bg-[#5865F2] border border-[#5865F2]/80",
+    icon: <BrandDiscordIcon className="size-3 text-[#5865F2]" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "Telegram",
     url: "https://t.me/Pradnyesh_25",
-    icon: <BrandTelegramIcon className="size-3.5" />,
-    containerClass: "bg-[#229ED9] border border-[#229ED9]/80",
+    icon: <BrandTelegramIcon className="size-3.75" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
     name: "Email",
     url: "mailto:workspace.pradnyesh@gmail.com",
-    icon: <BrandEmailIcon className="size-3.25 text-zinc-300" />,
-    containerClass: "bg-zinc-900 border border-zinc-800",
+    icon: <BrandEmailIcon className="size-3.5 text-zinc-400 group-hover:text-zinc-200" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: false,
   },
   {
     name: "Resume",
     url: "/resume.pdf",
-    icon: <BrandResumeIcon className="size-3.25 text-zinc-300" />,
-    containerClass: "bg-zinc-900 border border-zinc-800",
+    icon: <BrandResumeIcon className="size-3.5 text-zinc-400 group-hover:text-zinc-200" />,
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
 ];
@@ -109,7 +109,7 @@ export default function SocialLinks() {
                 {item.name}
               </span>
             </div>
-            <ArrowUpRight className="size-3 text-zinc-600 opacity-60 group-hover:opacity-100 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150 shrink-0 ml-1.5" />
+            <ArrowUpRight className="size-2.5 text-zinc-600 opacity-40 group-hover:opacity-100 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150 shrink-0 ml-1.5" />
           </a>
         ))}
       </div>

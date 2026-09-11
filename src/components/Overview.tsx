@@ -102,8 +102,8 @@ export default function Overview() {
           {/* COLUMN 1 */}
           <div className="space-y-2 sm:space-y-2.5">
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <CodeXml className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <CodeXml className="size-3" strokeWidth={1.5} />
               </div>
               <span className="text-zinc-300 truncate">
                 AI Engineer &amp; Full-Stack Developer
@@ -111,8 +111,8 @@ export default function Overview() {
             </div>
 
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <Sparkles className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <Sparkles className="size-3" strokeWidth={1.5} />
               </div>
               <span className="text-zinc-300 truncate">
                 Currently building
@@ -120,8 +120,8 @@ export default function Overview() {
             </div>
 
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <MapPin className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <MapPin className="size-3" strokeWidth={1.5} />
               </div>
               <span className="text-zinc-300 truncate">
                 Mumbai · Pune, India
@@ -129,8 +129,8 @@ export default function Overview() {
             </div>
 
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <GraduationCap className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <GraduationCap className="size-3" strokeWidth={1.5} />
               </div>
               <span className="text-zinc-300 truncate">
                 Savitribai Phule Pune University
@@ -141,8 +141,8 @@ export default function Overview() {
           {/* COLUMN 2 */}
           <div className="space-y-2 sm:space-y-2.5">
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <Clock className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <Clock className="size-3" strokeWidth={1.5} />
               </div>
               <span className="text-zinc-300 truncate">
                 <span>{currentTime || "--:--"}</span>
@@ -151,8 +151,8 @@ export default function Overview() {
             </div>
 
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <Mail className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <Mail className="size-3" strokeWidth={1.5} />
               </div>
               <a
                 href={`mailto:${personal.email}`}
@@ -164,8 +164,8 @@ export default function Overview() {
             </div>
 
             <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
-                <Calendar className="size-3.5" strokeWidth={1.5} />
+              <div className="flex size-4.5 shrink-0 items-center justify-center rounded-[3px] border border-zinc-800/40 bg-zinc-900/25 text-zinc-500">
+                <Calendar className="size-3" strokeWidth={1.5} />
               </div>
               <a
                 href={personal.socials.cal}
