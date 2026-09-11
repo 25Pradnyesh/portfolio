@@ -92,86 +92,86 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* 3. INFORMATION / METADATA AREA - Unified Technical Profile Block */}
+      {/* 3. INFORMATION / METADATA AREA - Unified Technical Profile Panel */}
       <section
         data-slot="panel"
-        className="screen-line-before border-x border-b border-edge bg-[var(--background)] px-4 sm:px-5 py-3 sm:py-3.5"
+        className="screen-line-before border-x border-b border-edge bg-[var(--background)] px-5 sm:px-6 py-3 sm:py-3.5"
       >
         <h2 className="sr-only">Overview &amp; Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-2 sm:gap-y-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 sm:gap-x-12 gap-y-2 sm:gap-y-2.5">
           {/* COLUMN 1 */}
           <div className="space-y-2 sm:space-y-2.5">
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <CodeXml className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200 truncate">
+              <span className="text-zinc-300 truncate">
                 AI Engineer &amp; Full-Stack Developer
-              </p>
+              </span>
             </div>
 
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <Sparkles className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200 truncate">
+              <span className="text-zinc-300 truncate">
                 Currently building
-              </p>
+              </span>
             </div>
 
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <MapPin className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200 truncate">
+              <span className="text-zinc-300 truncate">
                 Mumbai · Pune, India
-              </p>
+              </span>
             </div>
 
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <GraduationCap className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200 truncate">
+              <span className="text-zinc-300 truncate">
                 Savitribai Phule Pune University
-              </p>
+              </span>
             </div>
           </div>
 
           {/* COLUMN 2 */}
           <div className="space-y-2 sm:space-y-2.5">
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <Clock className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200 truncate">
+              <span className="text-zinc-300 truncate">
                 <span>{currentTime || "--:--"}</span>
-                <span className="text-zinc-500">{" // IST"}</span>
-              </p>
+                <span className="text-zinc-600 ml-1">{"// IST"}</span>
+              </span>
             </div>
 
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <Mail className="size-3.5" strokeWidth={1.5} />
               </div>
               <a
                 href={`mailto:${personal.email}`}
-                className="text-zinc-200 hover:text-white truncate transition-colors"
+                className="text-zinc-300 hover:text-white truncate transition-colors"
                 title={personal.email}
               >
                 {personal.email}
               </a>
             </div>
 
-            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
-              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/70 bg-zinc-900/50 text-zinc-400">
                 <Calendar className="size-3.5" strokeWidth={1.5} />
               </div>
               <a
                 href={personal.socials.cal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-200 hover:text-white truncate transition-colors"
+                className="text-zinc-300 hover:text-white truncate transition-colors"
               >
                 cal.com/pradnyesh
               </a>

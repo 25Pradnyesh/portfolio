@@ -24,56 +24,56 @@ const socialItems: SocialItem[] = [
   {
     name: "X",
     url: "https://x.com/Pradnyesh_25",
-    icon: <BrandXIcon className="size-3.5 text-white" />,
+    icon: <BrandXIcon className="size-3 text-white" />,
     containerClass: "bg-black border border-zinc-800",
     isExternal: true,
   },
   {
     name: "GitHub",
     url: "https://github.com/25Pradnyesh",
-    icon: <BrandGithubIcon className="size-3.5 text-white" />,
+    icon: <BrandGithubIcon className="size-3.25 text-white" />,
     containerClass: "bg-zinc-900 border border-zinc-800",
     isExternal: true,
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/pradnyesh-s/",
-    icon: <BrandLinkedinIn className="size-3.5 text-white" />,
+    icon: <BrandLinkedinIn className="size-3.25 text-white" />,
     containerClass: "bg-[#0A66C2] border border-[#0A66C2]/80",
     isExternal: true,
   },
   {
     name: "Cal.com",
     url: "https://cal.com/pradnyesh",
-    icon: <BrandCalIcon className="w-4.5 h-auto text-white" />,
+    icon: <BrandCalIcon className="w-4 h-auto text-white" />,
     containerClass: "bg-zinc-900 border border-zinc-800",
     isExternal: true,
   },
   {
     name: "Discord",
     url: "https://discord.com/users/1397630514554212554",
-    icon: <BrandDiscordIcon className="size-3.5 text-white" />,
+    icon: <BrandDiscordIcon className="size-3.25 text-white" />,
     containerClass: "bg-[#5865F2] border border-[#5865F2]/80",
     isExternal: true,
   },
   {
     name: "Telegram",
     url: "https://t.me/Pradnyesh_25",
-    icon: <BrandTelegramIcon className="size-4" />,
+    icon: <BrandTelegramIcon className="size-3.5" />,
     containerClass: "bg-[#229ED9] border border-[#229ED9]/80",
     isExternal: true,
   },
   {
     name: "Email",
     url: "mailto:workspace.pradnyesh@gmail.com",
-    icon: <BrandEmailIcon className="size-3.5 text-zinc-300" />,
+    icon: <BrandEmailIcon className="size-3.25 text-zinc-300" />,
     containerClass: "bg-zinc-900 border border-zinc-800",
     isExternal: false,
   },
   {
     name: "Resume",
     url: "/resume.pdf",
-    icon: <BrandResumeIcon className="size-3.5 text-zinc-300" />,
+    icon: <BrandResumeIcon className="size-3.25 text-zinc-300" />,
     containerClass: "bg-zinc-900 border border-zinc-800",
     isExternal: true,
   },
@@ -93,15 +93,15 @@ export default function SocialLinks() {
             href={item.url}
             target={item.isExternal ? "_blank" : undefined}
             rel={item.isExternal ? "noopener noreferrer" : undefined}
-            className={`group flex items-center justify-between px-3.5 sm:px-4 py-2.5 sm:py-3 hover:bg-zinc-900/40 transition-colors ${
+            className={`group flex items-center justify-between px-4 sm:px-5 py-2.5 sm:py-3 hover:bg-zinc-900/30 transition-colors ${
               idx < 6 ? "border-b border-edge" : "border-b-0"
             } ${idx < 4 ? "sm:border-b sm:border-edge" : "sm:border-b-0"} ${
               idx % 2 === 0 ? "border-r border-edge" : "border-r-0"
             } ${idx % 4 !== 3 ? "sm:border-r sm:border-edge" : "sm:border-r-0"}`}
           >
-            <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
               <div
-                className={`flex size-6 shrink-0 items-center justify-center rounded-[5px] ${item.containerClass}`}
+                className={`flex size-5.5 sm:size-6 shrink-0 items-center justify-center rounded-[4px] ${item.containerClass}`}
               >
                 {item.icon}
               </div>
@@ -109,7 +109,7 @@ export default function SocialLinks() {
                 {item.name}
               </span>
             </div>
-            <ArrowUpRight className="size-3.5 text-zinc-600 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150 shrink-0 ml-1.5" />
+            <ArrowUpRight className="size-3 text-zinc-600 opacity-60 group-hover:opacity-100 group-hover:text-zinc-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150 shrink-0 ml-1.5" />
           </a>
         ))}
       </div>
