@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
 
       <main className="max-w-screen overflow-x-hidden px-2">
-        <div className="mx-auto md:max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           {/* Hero / Overview / Profile / Info */}
           <Overview />
 

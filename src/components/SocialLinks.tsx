@@ -32,7 +32,7 @@ const socialItems: SocialItem[] = [
     name: "GitHub",
     url: "https://github.com/25Pradnyesh",
     icon: <BrandGithubIcon className="size-4 text-zinc-100 group-hover:text-white" />,
-    containerClass: "bg-zinc-900/50 border border-zinc-800/60",
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
@@ -46,7 +46,7 @@ const socialItems: SocialItem[] = [
     name: "Cal.com",
     url: "https://cal.com/pradnyesh",
     icon: <BrandCalIcon className="w-[21px] h-auto text-zinc-100 group-hover:text-white" />,
-    containerClass: "bg-zinc-900/50 border border-zinc-800/60",
+    containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
   {
@@ -59,7 +59,7 @@ const socialItems: SocialItem[] = [
   {
     name: "Telegram",
     url: "https://t.me/Pradnyesh_25",
-    icon: <BrandTelegramIcon className="size-3.75" />,
+    icon: <BrandTelegramIcon className="size-3.5" />,
     containerClass: "bg-zinc-900/40 border border-zinc-800/60",
     isExternal: true,
   },
