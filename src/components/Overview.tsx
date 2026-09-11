@@ -44,16 +44,16 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* 2. PROFILE ROW - Proportional Left PFP Column & Vertically Centered 3-Row Text Structure */}
-      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[160px_1fr] md:grid-cols-[170px_1fr] border-x border-b border-edge bg-[var(--background)]">
-        {/* Left Column: Large, prominently centered PFP filling the cell */}
-        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-3 sm:p-3.5 relative">
-          <div className="size-28 sm:size-32 md:size-[136px] rounded-full border border-zinc-800 bg-zinc-950 relative -mt-5 sm:-mt-6 z-10 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
+      {/* 2. PROFILE ROW - Proportional Left PFP Column & Compact 3-Row Identity Block */}
+      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[135px_1fr] md:grid-cols-[145px_1fr] border-x border-b border-edge bg-[var(--background)]">
+        {/* Left Column: Narrow column with large PFP occupying most of the cell */}
+        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-2 sm:p-2.5">
+          <div className="size-24 sm:size-[114px] md:size-[122px] rounded-full border border-zinc-800 bg-zinc-950 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
             <Image
               src={personal.profileImage}
               alt="Pradnyesh"
-              width={140}
-              height={140}
+              width={130}
+              height={130}
               className="size-full rounded-full object-cover pfp-image"
               style={{ filter: "none", opacity: 1 }}
               priority
@@ -61,21 +61,21 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* Right Column: 3-Row Identity Structure with internal horizontal grid dividers */}
+        {/* Right Column: Compact 3-Row Identity Block with internal structural grid dividers */}
         <div className="flex flex-col justify-between min-w-0">
-          {/* Row 1: Role / Eyebrow */}
-          <div className="px-5 sm:px-6 py-2.5 sm:py-3 border-b border-edge flex items-center">
+          {/* Row 1: Role / Eyebrow (smallest / muted) */}
+          <div className="px-3.5 sm:px-4 md:px-5 py-2 sm:py-2.5 border-b border-edge flex items-center">
             <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none">
               AI Engineer &amp; Full-Stack Developer
             </div>
           </div>
 
           {/* Row 2: Dominant Name + Verified Badge + Status */}
-          <div className="px-5 sm:px-6 py-3 sm:py-3.5 border-b border-edge flex items-center">
+          <div className="px-3.5 sm:px-4 md:px-5 py-2.5 sm:py-3 border-b border-edge flex items-center">
             <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-              <h1 className="text-xl sm:text-2xl md:text-[26px] font-semibold tracking-tight text-zinc-50 flex items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl md:text-[30px] font-bold tracking-tight text-white flex items-center gap-2">
                 <span>Pradnyesh</span>
-                <VerifiedBadge className="size-4 sm:size-4.5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
+                <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
               </h1>
               <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-emerald-400 select-none tracking-wider ml-1 sm:ml-1.5">
                 <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -84,8 +84,8 @@ export default function Overview() {
             </div>
           </div>
 
-          {/* Row 3: Tagline */}
-          <div className="px-5 sm:px-6 py-2.5 sm:py-3 flex items-center min-w-0">
+          {/* Row 3: Tagline (secondary) */}
+          <div className="px-3.5 sm:px-4 md:px-5 py-2 sm:py-2.5 flex items-center min-w-0">
             <p className="font-sans text-xs sm:text-[13px] text-zinc-400 select-none leading-normal truncate">
               Turning ideas into working software
             </p>
