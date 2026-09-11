@@ -92,67 +92,67 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* 3. INFORMATION / METADATA AREA - 2-Column Monospace Technical Overview */}
+      {/* 3. INFORMATION / METADATA AREA - Unified Technical Profile Block */}
       <section
         data-slot="panel"
-        className="screen-line-before border-x border-edge"
+        className="screen-line-before border-x border-b border-edge bg-[var(--background)] px-4 sm:px-5 py-3 sm:py-3.5"
       >
         <h2 className="sr-only">Overview &amp; Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 border-b border-edge">
-          {/* LEFT COLUMN */}
-          <div className="p-4 sm:p-5 md:border-r border-edge space-y-3">
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <CodeXml className="size-4" strokeWidth={1.5} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-2 sm:gap-y-2.5">
+          {/* COLUMN 1 */}
+          <div className="space-y-2 sm:space-y-2.5">
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <CodeXml className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200">
+              <p className="text-zinc-200 truncate">
                 AI Engineer &amp; Full-Stack Developer
               </p>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Sparkles className="size-4" strokeWidth={1.5} />
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <Sparkles className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200">
+              <p className="text-zinc-200 truncate">
                 Currently building
               </p>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <MapPin className="size-4" strokeWidth={1.5} />
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <MapPin className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200">
+              <p className="text-zinc-200 truncate">
                 Mumbai · Pune, India
               </p>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <GraduationCap className="size-4" strokeWidth={1.5} />
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <GraduationCap className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200">
+              <p className="text-zinc-200 truncate">
                 Savitribai Phule Pune University
               </p>
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="p-4 sm:p-5 border-t md:border-t-0 border-edge space-y-3">
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Clock className="size-4" strokeWidth={1.5} />
+          {/* COLUMN 2 */}
+          <div className="space-y-2 sm:space-y-2.5">
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <Clock className="size-3.5" strokeWidth={1.5} />
               </div>
-              <p className="text-zinc-200">
+              <p className="text-zinc-200 truncate">
                 <span>{currentTime || "--:--"}</span>
                 <span className="text-zinc-500">{" // IST"}</span>
               </p>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Mail className="size-4" strokeWidth={1.5} />
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <Mail className="size-3.5" strokeWidth={1.5} />
               </div>
               <a
                 href={`mailto:${personal.email}`}
@@ -163,15 +163,15 @@ export default function Overview() {
               </a>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Calendar className="size-4" strokeWidth={1.5} />
+            <div className="flex items-center gap-2.5 font-mono text-xs sm:text-[13px] leading-tight min-w-0">
+              <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] border border-zinc-800/80 bg-zinc-900/60 text-zinc-400">
+                <Calendar className="size-3.5" strokeWidth={1.5} />
               </div>
               <a
                 href={personal.socials.cal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-200 hover:text-white transition-colors"
+                className="text-zinc-200 hover:text-white truncate transition-colors"
               >
                 cal.com/pradnyesh
               </a>
