@@ -13,13 +13,11 @@ function useIsMounted() {
 }
 
 const ROLLING_LABELS = [
-  "Product Engineer",
   "AI Engineer",
-  "Full-Stack Developer",
-  "Generative AI Builder",
-  "Hackathon Builder",
-  "AI Systems Developer",
-  "Experimental Product Builder",
+  "Product Engineer",
+  "AI Systems Builder",
+  "Building AI-powered products",
+  "Trying to provide value & using code to do so.",
 ] as const;
 
 // Duplicate the first item at the end for an invisible, seamless infinite loop
@@ -87,7 +85,7 @@ export default function RollingLabel() {
     return (
       <div className="relative h-5 overflow-hidden w-full min-w-0 select-none flex items-center">
         <span className="font-sans text-xs sm:text-[13px] text-zinc-400 select-none leading-normal truncate">
-          Product Engineer
+          AI Engineer
         </span>
       </div>
     );
