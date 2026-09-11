@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   CodeXml,
   MapPin,
@@ -13,6 +14,52 @@ import {
 } from "lucide-react";
 import { PixelPSLogo, VerifiedBadge } from "@/components/Icons";
 import { portfolioData } from "@/data/portfolio";
+
+const rollingPhrases = [
+  "Turning ideas into working software",
+  "Building AI products",
+  "Full-stack systems",
+  "Experimenting with AI agents",
+  "Shipping from zero to one",
+];
+
+function VerticalRollingTagline() {
+  const [index, setIndex] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % rollingPhrases.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [shouldReduceMotion]);
+
+  if (shouldReduceMotion) {
+    return (
+      <p className="font-sans text-xs sm:text-[13px] md:text-sm text-zinc-400 mt-1 sm:mt-1.5 leading-normal">
+        {rollingPhrases[0]}
+      </p>
+    );
+  }
+
+  return (
+    <div className="relative h-5 sm:h-5.5 overflow-hidden mt-1 sm:mt-1.5 select-none">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.p
+          key={index}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="font-sans text-xs sm:text-[13px] md:text-sm text-zinc-400 leading-normal truncate"
+        >
+          {rollingPhrases[index]}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Overview() {
   const { personal } = portfolioData;
@@ -45,10 +92,10 @@ export default function Overview() {
       </div>
 
       {/* 2. PROFILE ROW - Spacious Grid-Aligned Architectural Identity Section */}
-      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-4 border-x border-b border-edge bg-[var(--background)] min-h-[160px] sm:min-h-[175px] md:min-h-[190px]">
-        {/* Left Column: Exactly 25% (1 of 4 columns), aligning with the site's vertical grid */}
-        <div className="sm:col-span-1 border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-6 sm:p-7 md:p-8">
-          <div className="size-32 sm:size-36 md:size-40 rounded-full border border-zinc-800 bg-zinc-900/90 relative -mt-16 sm:-mt-[72px] md:-mt-20 z-10 overflow-hidden select-none ring-1 ring-white/5 shadow-md">
+      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[200px_1fr] md:grid-cols-[220px_1fr] border-x border-b border-edge bg-[var(--background)]">
+        {/* Left Column: Avatar Container with natural boundary overlap */}
+        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-4 sm:p-5 relative min-h-[140px] sm:min-h-[155px]">
+          <div className="size-32 sm:size-36 md:size-[144px] rounded-full border border-zinc-800 bg-zinc-950 relative -mt-6 sm:-mt-8 md:-mt-9 z-10 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
             <Image
               src={personal.profileImage}
               alt="Pradnyesh"
@@ -61,29 +108,27 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* Right Column: Exactly 75% (3 of 4 columns) with generous breathing room */}
-        <div className="sm:col-span-3 flex flex-col justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-6 sm:py-7 md:py-8 min-w-0">
+        {/* Right Column: Identity Information reading as one composed block */}
+        <div className="flex flex-col justify-center px-6 sm:px-7 md:px-8 py-5 sm:py-6 min-w-0">
           {/* Eyebrow / Technical Role */}
-          <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none">
+          <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none mb-1">
             AI Engineer &amp; Full-Stack Developer
           </div>
 
           {/* Name & Active Status Indicator */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mt-1 sm:mt-1.5">
-            <h1 className="text-2xl sm:text-3xl md:text-[34px] font-semibold tracking-tight text-zinc-50">
-              Pradnyesh
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            <h1 className="text-2xl sm:text-3xl md:text-[32px] font-semibold tracking-tight text-zinc-50 flex items-center gap-2">
+              <span>Pradnyesh</span>
+              <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
             </h1>
-            <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0" />
             <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-emerald-400 select-none tracking-wider ml-1 sm:ml-1.5">
               <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               BUILDING
             </span>
           </div>
 
-          {/* Subtitle directly on its own line underneath */}
-          <p className="font-sans text-xs sm:text-[13px] md:text-sm text-zinc-400 mt-2 sm:mt-2.5 leading-relaxed">
-            Turning ideas into working software
-          </p>
+          {/* Subtitle / Vertically Rolling Tagline */}
+          <VerticalRollingTagline />
         </div>
       </div>
 
