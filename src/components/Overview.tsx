@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   CodeXml,
   MapPin,
@@ -14,52 +13,6 @@ import {
 } from "lucide-react";
 import { PixelPSLogo, VerifiedBadge } from "@/components/Icons";
 import { portfolioData } from "@/data/portfolio";
-
-const rollingPhrases = [
-  "Building AI products",
-  "Full-stack systems",
-  "Experimenting with AI agents",
-  "Shipping from zero to one",
-  "Turning ideas into working software",
-];
-
-function VerticalRollingTagline() {
-  const [index, setIndex] = useState(0);
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % rollingPhrases.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, [shouldReduceMotion]);
-
-  if (shouldReduceMotion) {
-    return (
-      <p className="font-sans text-xs sm:text-[13px] text-zinc-400 leading-normal">
-        {rollingPhrases[0]}
-      </p>
-    );
-  }
-
-  return (
-    <div className="relative h-5 overflow-hidden select-none w-full flex items-center">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.p
-          key={index}
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-100%", opacity: 0 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-xs sm:text-[13px] text-zinc-400 leading-normal truncate"
-        >
-          {rollingPhrases[index]}
-        </motion.p>
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export default function Overview() {
   const { personal } = portfolioData;
@@ -91,11 +44,11 @@ export default function Overview() {
         </div>
       </div>
 
-      {/* 2. PROFILE ROW - Dedicated Left PFP Column & Compact 3-Tier Right Column */}
-      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[170px_1fr] md:grid-cols-[180px_1fr] border-x border-b border-edge bg-[var(--background)]">
-        {/* Left Column: PFP perfectly centered inside the box */}
-        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-3.5 sm:p-4">
-          <div className="size-24 sm:size-28 md:size-[118px] rounded-full border border-zinc-800 bg-zinc-950 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
+      {/* 2. PROFILE ROW - Proportional Left PFP Column & Vertically Centered 3-Row Text Structure */}
+      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[160px_1fr] md:grid-cols-[170px_1fr] border-x border-b border-edge bg-[var(--background)]">
+        {/* Left Column: Large, prominently centered PFP filling the cell */}
+        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-3 sm:p-3.5 relative">
+          <div className="size-28 sm:size-32 md:size-[136px] rounded-full border border-zinc-800 bg-zinc-950 relative -mt-5 sm:-mt-6 z-10 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
             <Image
               src={personal.profileImage}
               alt="Pradnyesh"
@@ -108,16 +61,16 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* Right Column: Compact 3-Tier Identity Column with internal horizontal dividers */}
+        {/* Right Column: 3-Row Identity Structure with internal horizontal grid dividers */}
         <div className="flex flex-col justify-between min-w-0">
-          {/* Tier 1: Role / Eyebrow */}
-          <div className="px-5 sm:px-6 py-2.5 sm:py-2.5 border-b border-edge flex items-center">
+          {/* Row 1: Role / Eyebrow */}
+          <div className="px-5 sm:px-6 py-2.5 sm:py-3 border-b border-edge flex items-center">
             <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none">
               AI Engineer &amp; Full-Stack Developer
             </div>
           </div>
 
-          {/* Tier 2: Dominant Name + Verified Badge + Status */}
+          {/* Row 2: Dominant Name + Verified Badge + Status */}
           <div className="px-5 sm:px-6 py-3 sm:py-3.5 border-b border-edge flex items-center">
             <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
               <h1 className="text-xl sm:text-2xl md:text-[26px] font-semibold tracking-tight text-zinc-50 flex items-center gap-2">
@@ -131,9 +84,11 @@ export default function Overview() {
             </div>
           </div>
 
-          {/* Tier 3: Vertically Rolling Descriptor */}
-          <div className="px-5 sm:px-6 py-2.5 sm:py-2.5 flex items-center min-w-0 w-full">
-            <VerticalRollingTagline />
+          {/* Row 3: Tagline */}
+          <div className="px-5 sm:px-6 py-2.5 sm:py-3 flex items-center min-w-0">
+            <p className="font-sans text-xs sm:text-[13px] text-zinc-400 select-none leading-normal truncate">
+              Turning ideas into working software
+            </p>
           </div>
         </div>
       </div>
