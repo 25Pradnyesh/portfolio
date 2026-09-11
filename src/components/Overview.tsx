@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   CodeXml,
   MapPin,
@@ -12,8 +13,54 @@ import {
   Calendar,
 } from "lucide-react";
 import { PixelPSLogo } from "@/components/Icons";
-import MovingText from "@/components/MovingText";
 import { portfolioData } from "@/data/portfolio";
+
+const rollingPhrases = [
+  "Building AI products & full-stack systems",
+  "Experimenting with AI agents",
+  "Shipping products from zero to one",
+  "Turning ideas into working software",
+  "Building AI-powered products",
+  "Exploring AI × software × product",
+];
+
+function VerticalRollingTagline() {
+  const [index, setIndex] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % rollingPhrases.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [shouldReduceMotion]);
+
+  if (shouldReduceMotion) {
+    return (
+      <p className="font-sans text-xs sm:text-[13px] text-zinc-400 mt-1.5 sm:mt-2 leading-normal">
+        {rollingPhrases[0]}
+      </p>
+    );
+  }
+
+  return (
+    <div className="relative h-5 sm:h-5.5 overflow-hidden mt-1.5 sm:mt-2 select-none">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.p
+          key={index}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="font-sans text-xs sm:text-[13px] text-zinc-400 leading-normal truncate"
+        >
+          {rollingPhrases[index]}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Overview() {
   const { personal } = portfolioData;
@@ -46,9 +93,9 @@ export default function Overview() {
       </div>
 
       {/* 2. PROFILE ROW - Seamless Editorial Layout, 50% Overlapping Avatar */}
-      <div className="flex border-x border-edge bg-[var(--background)]">
+      <div className="flex border-x border-b border-edge bg-[var(--background)]">
         {/* Left Column: Avatar container */}
-        <div className="shrink-0 border-r border-edge flex items-center justify-center px-4 sm:px-6 py-3">
+        <div className="shrink-0 border-r border-edge flex items-center justify-center px-4 sm:px-6 py-4">
           <div className="size-28 sm:size-34 rounded-full ring-1 ring-zinc-800 ring-offset-2 ring-offset-zinc-950 relative -mt-14 sm:-mt-17 z-10 overflow-hidden select-none bg-[var(--background)] shadow-sm">
             <Image
               src={personal.profileImage}
@@ -62,8 +109,8 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* Right Column: Unified continuous editorial composition (No internal horizontal dividing lines) */}
-        <div className="flex flex-1 flex-col justify-center px-4 py-3 sm:px-6 sm:py-4 min-w-0">
+        {/* Right Column: Unified continuous editorial composition */}
+        <div className="flex flex-1 flex-col justify-center px-4 py-4 sm:px-6 sm:py-5 min-w-0">
           <div className="font-mono text-[11px] sm:text-xs text-zinc-500 tracking-tight select-none">
             AI Engineer &amp; Full-Stack Developer
           </div>
@@ -76,16 +123,12 @@ export default function Overview() {
               Available / Building
             </span>
           </div>
-          <p className="font-sans text-xs sm:text-[13px] text-zinc-400 mt-1 sm:mt-1.5 leading-normal">
-            Building AI products &amp; full-stack systems
-          </p>
+          {/* Vertical Rolling Tagline: Exactly in place of static bio */}
+          <VerticalRollingTagline />
         </div>
       </div>
 
-      {/* 3. MOVING TEXT TICKER - Seamless infinite animated marquee with diagonal hatch */}
-      <MovingText />
-
-      {/* 4. INFORMATION / METADATA AREA - 2-Column Monospace Technical Overview */}
+      {/* 3. INFORMATION / METADATA AREA - 2-Column Monospace Technical Overview */}
       <section
         data-slot="panel"
         className="screen-line-before border-x border-edge"
@@ -93,10 +136,10 @@ export default function Overview() {
         <h2 className="sr-only">Overview &amp; Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 border-b border-edge">
           {/* LEFT COLUMN */}
-          <div className="p-3.5 sm:p-4.5 md:border-r border-edge space-y-2.5 sm:space-y-3">
+          <div className="p-4 sm:p-5 md:border-r border-edge space-y-3">
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <CodeXml className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <CodeXml className="size-4" strokeWidth={1.5} />
               </div>
               <p className="text-zinc-200">
                 AI Engineer &amp; Full-Stack Developer
@@ -104,8 +147,8 @@ export default function Overview() {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Sparkles className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Sparkles className="size-4" strokeWidth={1.5} />
               </div>
               <p className="text-zinc-200">
                 Currently building
@@ -113,8 +156,8 @@ export default function Overview() {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <MapPin className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <MapPin className="size-4" strokeWidth={1.5} />
               </div>
               <p className="text-zinc-200">
                 Mumbai · Pune, India
@@ -122,8 +165,8 @@ export default function Overview() {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <GraduationCap className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <GraduationCap className="size-4" strokeWidth={1.5} />
               </div>
               <p className="text-zinc-200">
                 Savitribai Phule Pune University
@@ -132,10 +175,10 @@ export default function Overview() {
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className="p-3.5 sm:p-4.5 border-t md:border-t-0 border-edge space-y-2.5 sm:space-y-3">
+          <div className="p-4 sm:p-5 border-t md:border-t-0 border-edge space-y-3">
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Clock className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Clock className="size-4" strokeWidth={1.5} />
               </div>
               <p className="text-zinc-200">
                 <span>{currentTime || "--:--"}</span>
@@ -144,8 +187,8 @@ export default function Overview() {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Mail className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Mail className="size-4" strokeWidth={1.5} />
               </div>
               <a
                 href={`mailto:${personal.email}`}
@@ -157,8 +200,8 @@ export default function Overview() {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs sm:text-[13px]">
-              <div className="flex size-6.5 sm:size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
-                <Calendar className="size-3.5 sm:size-4" strokeWidth={1.5} />
+              <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-edge bg-zinc-900/80 text-zinc-400">
+                <Calendar className="size-4" strokeWidth={1.5} />
               </div>
               <a
                 href={personal.socials.cal}

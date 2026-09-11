@@ -9,22 +9,17 @@ export default function About() {
     <section
       id="about"
       data-slot="panel"
-      className="screen-line-before screen-line-after border-x border-edge before:content-none after:content-none"
+      className="screen-line-before border-x border-b border-edge px-4 py-6 sm:px-6 sm:py-8"
     >
-      {/* Section Header */}
-      <div className="border-b border-edge px-4 py-3">
-        <h2 className="section-heading">About</h2>
-      </div>
+      {/* Seamless Bio Heading: Naturally flows into content without an internal horizontal dividing line */}
+      <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-4">
+        About
+      </h2>
 
-      {/* Body */}
-      <div className="border-b border-edge px-4 py-4 space-y-2.5">
+      {/* Bio Paragraphs */}
+      <div className="space-y-3.5 font-sans text-sm sm:text-[14.5px] leading-relaxed text-zinc-400">
         {about.paragraphs.map((paragraph, index) => (
-          <p
-            key={index}
-            className="text-sm leading-relaxed text-[var(--muted-foreground)]"
-          >
-            {paragraph}
-          </p>
+          <p key={index}>{paragraph}</p>
         ))}
       </div>
     </section>
