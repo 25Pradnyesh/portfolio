@@ -72,6 +72,9 @@ export interface PortfolioData {
   };
   socialLinks: SocialLinkItem[];
   about: {
+    primaryIntro?: string;
+    building?: string;
+    exploring?: string[];
     paragraphs: string[];
   };
   skills: SkillCategory[];
@@ -166,10 +169,21 @@ export const portfolioData: PortfolioData = {
     },
   ],
   about: {
+    primaryIntro:
+      "AI Engineer & Full-Stack Developer building products across AI, full-stack development and emerging technologies.",
+    building:
+      "I take vague ideas, turn them into working systems, and ship them — from hackathon prototypes to independent products.",
+    exploring: [
+      "AI engineering",
+      "intelligent interfaces",
+      "AI systems",
+      "Web3",
+      "product development",
+    ],
     paragraphs: [
-      "AI Engineer & Full-Stack Developer with hands-on experience building products across AI, full-stack development and emerging technologies.",
-      "I enjoy taking vague ideas, turning them into working systems, and shipping them fast — from hackathon prototypes to independent products.",
-      "Currently exploring AI engineering, intelligent interfaces, Web3 and product development.",
+      "AI Engineer & Full-Stack Developer building products across AI, full-stack development and emerging technologies.",
+      "I take vague ideas, turn them into working systems, and ship them — from hackathon prototypes to independent products.",
+      "AI engineering · intelligent interfaces · AI systems · Web3 · product development",
     ],
   },
   skills: [
