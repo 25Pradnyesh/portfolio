@@ -7,8 +7,8 @@ import { Connections } from "@/features/portfolio/components/connections";
 import { About } from "@/features/portfolio/components/about";
 import { TechStack } from "@/features/portfolio/components/tech-stack";
 import { Experiences } from "@/features/portfolio/components/experiences";
-import { Projects } from "@/features/portfolio/components/projects";
 import { Education } from "@/features/portfolio/components/education";
+import { Projects } from "@/features/portfolio/components/projects";
 
 export default function Home() {
   return (
@@ -38,12 +38,12 @@ export default function Home() {
           <Experiences />
           <Separator />
 
-          {/* Projects */}
-          <Projects />
-          <Separator />
-
           {/* Education */}
           <Education />
+          <Separator />
+
+          {/* Projects */}
+          <Projects />
         </div>
       </main>
 
