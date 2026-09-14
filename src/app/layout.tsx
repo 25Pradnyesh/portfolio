@@ -15,18 +15,18 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#09090b",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pradnyesh.dev"),
-  title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
+  title: "Pradnyesh — AI Engineer & Full-Stack Developer",
   description:
-    "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
+    "AI Engineer & Full-Stack Developer building AI systems, intelligent products and modern full-stack applications.",
   keywords: [
-    "Pradnyesh S",
+    "Pradnyesh",
     "AI Engineer",
     "Full-Stack Developer",
     "Next.js",
@@ -36,12 +36,12 @@ export const metadata: Metadata = {
     "LLMs",
     "Web3",
   ],
-  authors: [{ name: "Pradnyesh S", url: "https://github.com/25Pradnyesh" }],
-  creator: "Pradnyesh S",
+  authors: [{ name: "Pradnyesh", url: "https://github.com/25Pradnyesh" }],
+  creator: "Pradnyesh",
   openGraph: {
-    title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
+    title: "Pradnyesh — AI Engineer & Full-Stack Developer",
     description:
-      "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
+      "AI Engineer & Full-Stack Developer building AI systems, intelligent products and modern full-stack applications.",
     type: "website",
     locale: "en_US",
     images: [
@@ -49,15 +49,15 @@ export const metadata: Metadata = {
         url: "/pfp.jpeg",
         width: 1200,
         height: 1200,
-        alt: "Pradnyesh S - AI Engineer & Full-Stack Developer",
+        alt: "Pradnyesh — AI Engineer & Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pradnyesh S — AI Engineer & Full-Stack Developer",
+    title: "Pradnyesh — AI Engineer & Full-Stack Developer",
     description:
-      "AI Engineer and Full-Stack Developer building AI-powered products, full-stack systems and experimental ideas from zero to shipped.",
+      "AI Engineer & Full-Stack Developer building AI systems, intelligent products and modern full-stack applications.",
     creator: "@Pradnyesh_25",
     images: ["/pfp.jpeg"],
   },
@@ -78,7 +78,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body suppressHydrationWarning className="min-h-screen antialiased">
+      <body suppressHydrationWarning className="min-h-screen antialiased bg-background text-foreground">
         {children}
       </body>
     </html>

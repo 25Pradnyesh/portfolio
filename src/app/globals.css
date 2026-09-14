@@ -1,300 +1,236 @@
 @import "tailwindcss";
 
-/* Design tokens matching prathadox.com reference */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-line: var(--line);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-info: var(--info);
+  --color-success: var(--success);
+
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-heading: var(--font-sans);
+
+  --header-height: 3.5rem;
+  --separator-height: 2rem;
+}
+
 :root {
-  /* Colors - Zinc palette */
+  /* Dark-first engineering aesthetic */
   --background: #09090b;
   --foreground: #fafafa;
+
+  --primary: #fafafa;
+  --primary-foreground: #09090b;
+
+  --secondary: #18181b;
+  --secondary-foreground: #fafafa;
+
   --muted: #18181b;
-  --muted-foreground: #71717b;
-  --edge: #27272a;
-  --accent: #fafafa;
-  --accent-muted: #9f9fa9;
-  --popover: #18181b;
-  --popover-foreground: #fafafa;
+  --muted-foreground: #a1a1aa;
 
-  /* Spacing system */
-  --section-gap: 0px;
-  --content-px: 16px;
-  --content-py: 16px;
+  --card: #121215;
+  --card-foreground: #fafafa;
+
+  --accent: #27272a;
+  --accent-muted: rgba(39, 39, 42, 0.4);
+  --accent-foreground: #fafafa;
+
+  --border: #27272a;
+  --line: #27272a;
+
+  --input: #27272a;
+  --ring: #3f3f46;
+
+  --info: #3b82f6;
+  --success: #10b981;
 }
 
-.light {
-  --background: #fafafa;
-  --foreground: #09090b;
-  --muted: #f4f4f5;
-  --muted-foreground: #52525c;
-  --edge: #e4e4e7;
-  --accent: #09090b;
-  --accent-muted: #71717b;
-  --popover: #ffffff;
-  --popover-foreground: #09090b;
-}
-
-html {
-  scroll-behavior: smooth;
-  color-scheme: dark;
-}
-
-html.light {
-  color-scheme: light;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-
-/* Screen-wide border lines */
-.screen-line-before {
+@utility screen-line-top {
   position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    z-index: 1;
+    height: 1px;
+    width: 200vw;
+    background-color: var(--line);
+    pointer-events: none;
+  }
 }
 
-.screen-line-before::before {
-  content: "";
-  position: absolute;
-  left: -100vw;
-  right: -100vw;
-  top: 0;
-  height: 1px;
-  background-color: var(--edge);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.screen-line-after {
+@utility screen-line-bottom {
   position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100vw;
+    z-index: 1;
+    height: 1px;
+    width: 200vw;
+    background-color: var(--line);
+    pointer-events: none;
+  }
 }
 
-.screen-line-after::after {
-  content: "";
-  position: absolute;
-  left: -100vw;
-  right: -100vw;
-  bottom: 0;
-  height: 1px;
-  background-color: var(--edge);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Dot grid pattern for hero banner */
-.dot-grid {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.08) 1px,
-    transparent 0
-  );
-  background-size: 10px 10px;
-  background-position: center;
-}
-
-.light .dot-grid {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 0);
-  background-size: 10px 10px;
-}
-
-/* Diagonal-striped divider matching prathadox.com */
-.diagonal-divider {
+@utility screen-dashed-line-top {
   position: relative;
-  display: flex;
-  height: 1.75rem;
-  width: 100%;
-  border-top: 1px solid var(--edge);
-  border-bottom: 1px solid var(--edge);
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    z-index: 1;
+    height: 1px;
+    width: 200vw;
+    background-image: linear-gradient(to right, var(--line) 4px, transparent 2px);
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    pointer-events: none;
+  }
 }
 
-.diagonal-divider::before {
-  content: "";
-  position: absolute;
-  left: -100vw;
-  right: -100vw;
-  top: 0;
-  bottom: 0;
-  height: 100%;
+@utility screen-dashed-line-bottom {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100vw;
+    z-index: 1;
+    height: 1px;
+    width: 200vw;
+    background-image: linear-gradient(to right, var(--line) 4px, transparent 2px);
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    pointer-events: none;
+  }
+}
+
+@utility diagonal-stripes {
+  --pattern-foreground: rgba(255, 255, 255, 0.05);
   background-image: repeating-linear-gradient(
     315deg,
-    var(--edge) 0,
-    var(--edge) 1px,
+    var(--pattern-foreground) 0,
+    var(--pattern-foreground) 1px,
     transparent 0,
     transparent 50%
   );
-  background-size: 8px 8px;
-  opacity: 0.45;
-  pointer-events: none;
+  background-size: 10px 10px;
 }
 
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--edge);
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-}
-
-/* Moving text marquee animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
+@utility stripe-divider {
+  position: relative;
+  height: var(--separator-height);
+  width: 100%;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  &::before {
+    content: "";
+    position: absolute;
+    left: -100vw;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 200vw;
+    --pattern-foreground: rgba(255, 255, 255, 0.04);
+    background-image: repeating-linear-gradient(
+      315deg,
+      var(--pattern-foreground) 0,
+      var(--pattern-foreground) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 10px 10px;
   }
 }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 40s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none !important;
-  }
-}
-
-/* Section heading style */
-.section-heading {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  font-family: var(--font-geist-mono), monospace;
-}
-
-/* Profile image - always full color */
-.pfp-image {
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-.light .pfp-image {
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-/* GitHub contribution colors */
-.contrib-0 {
-  background-color: var(--muted);
-}
-
-.contrib-1 {
-  background-color: #0e4429;
-}
-
-.contrib-2 {
-  background-color: #006d32;
-}
-
-.contrib-3 {
-  background-color: #26a641;
-}
-
-.contrib-4 {
-  background-color: #39d353;
-}
-
-.light .contrib-0 {
-  background-color: #ebedf0;
-}
-
-.light .contrib-1 {
-  background-color: #9be9a8;
-}
-
-.light .contrib-2 {
-  background-color: #40c463;
-}
-
-.light .contrib-3 {
-  background-color: #30a14e;
-}
-
-.light .contrib-4 {
-  background-color: #216e39;
-}
-
-/* Contribution tooltip */
-.contrib-tooltip {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 10px;
-  font-size: 11px;
-  font-family: var(--font-geist-mono), monospace;
-  background-color: var(--foreground);
-  color: var(--background);
-  border-radius: 6px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.contrib-cell:hover .contrib-tooltip {
-  opacity: 1;
-}
-
-.contrib-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 4px;
-  border-style: solid;
-  border-color: var(--foreground) transparent transparent transparent;
-}
-
-/* Border utilities */
-.border-edge {
-  border-color: var(--edge);
-}
-
-/* Panel sections */
-[data-slot="panel"] {
-  border-left: 1px solid var(--edge);
-  border-right: 1px solid var(--edge);
-}
-
-/* Smooth transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  transition-timing-function: ease-out;
+  &:hover {
+    color: var(--foreground);
+  }
 }
 
-button,
-a,
-[role="button"] {
-  transition: all 150ms ease-out;
+@utility link-underline {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition-property: text-decoration-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  &:hover {
+    text-decoration-color: var(--foreground);
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--border);
+  }
+
+  ::selection {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  [id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
 }

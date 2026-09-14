@@ -1,65 +1,53 @@
-import Navbar from "@/components/Navbar";
-import Overview from "@/components/Overview";
-import SocialLinks from "@/components/SocialLinks";
-import About from "@/components/About";
-import Contributions from "@/components/Contributions";
-import Stack from "@/components/Stack";
-import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import Projects from "@/components/Projects";
-import Awards from "@/components/Awards";
-import Interests from "@/components/Interests";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { Separator } from "@/components/separator";
+import { ProfileHero } from "@/features/portfolio/components/profile-hero";
+import { Overview } from "@/features/portfolio/components/overview";
+import { Connections } from "@/features/portfolio/components/connections";
+import { About } from "@/features/portfolio/components/about";
+import { TechStack } from "@/features/portfolio/components/tech-stack";
+import { Experiences } from "@/features/portfolio/components/experiences";
+import { Projects } from "@/features/portfolio/components/projects";
+import { Education } from "@/features/portfolio/components/education";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
+    <div className="relative isolate min-h-screen bg-background">
+      <SiteHeader />
 
-      <main className="max-w-screen overflow-x-hidden px-2">
-        <div className="mx-auto max-w-3xl">
-          {/* Hero / Overview / Profile / Info */}
+      <main className="max-w-screen overflow-x-clip px-2 pb-8">
+        <div className="mx-auto md:max-w-3xl">
+          {/* Hero / Identity */}
+          <ProfileHero />
+          <Separator />
+
+          {/* Metadata & 4x2 Connections */}
           <Overview />
-
-          {/* Social Links Grid */}
-          <SocialLinks />
+          <Connections />
+          <Separator />
 
           {/* About */}
           <About />
+          <Separator />
 
-          {/* GitHub Contributions */}
-          <Contributions />
-
-          {/* Stack */}
-          <Stack />
+          {/* Tech Stack (Continuous Logo Wall) */}
+          <TechStack />
+          <Separator />
 
           {/* Experience */}
-          <Experience />
-
-          {/* Education */}
-          <Education />
+          <Experiences />
+          <Separator />
 
           {/* Projects */}
           <Projects />
+          <Separator />
 
-          {/* Honors & Awards */}
-          <Awards />
-
-          {/* Things I'm Exploring */}
-          <Interests />
-
-          {/* Contact */}
-          <Contact />
-
-          {/* Footer */}
-          <Footer />
+          {/* Education */}
+          <Education />
         </div>
       </main>
 
-      {/* Scroll to Top Button */}
-      <ScrollToTop />
+      <SiteFooter />
     </div>
   );
 }
