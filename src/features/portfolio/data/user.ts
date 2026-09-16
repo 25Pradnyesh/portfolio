@@ -1,37 +1,56 @@
-export interface UserData {
-  name: string;
-  role: string;
-  positioning: string;
-  status: string;
-  statusDescriptor: string;
-  location: string;
-  university: string;
-  email: string;
-  calUrl: string;
-  profileImage: string;
-  timeZone: string;
-  bio: string;
-  aboutParagraphs: string[];
-}
+import type { User } from "@/features/portfolio/types/user"
 
-export const USER: UserData = {
-  name: "Pradnyesh",
-  role: "AI Engineer & Full-Stack Developer",
-  positioning:
-    "AI Engineer & Full-Stack Developer building AI systems, intelligent products and modern full-stack applications.",
-  status: "BUILDING",
-  statusDescriptor:
-    "Currently building AI systems, intelligent interfaces and full-stack products.",
-  location: "Mumbai · Pune, India",
-  university: "Savitribai Phule Pune University",
-  email: "workspace.pradnyesh@gmail.com",
-  calUrl: "https://cal.com/pradnyesh",
-  profileImage: "/pfp.jpeg",
-  timeZone: "Asia/Kolkata",
-  bio: "AI Engineer & Full-Stack Developer building products across AI, full-stack systems and emerging technologies. I turn ambiguous ideas into working software, from hackathon prototypes to production products.",
-  aboutParagraphs: [
-    "I'm an AI Engineer and Full-Stack Developer focused on building AI systems, intelligent product interfaces, and resilient full-stack applications.",
-    "My workflow is centered around rapid execution: taking complex models, APIs, and ideas from zero to shipped software. I frequently compete in hackathons, prototype experimental concepts, and explore new paradigms in developer tooling and AI interactions.",
-    "Currently building autonomous workflows, production LLM integrations, and modern web applications with a strong emphasis on clean system design and visual precision.",
+export const USER: User = {
+  firstName: "Pradnyesh",
+  lastName: "",
+  displayName: "Pradnyesh",
+  username: "25Pradnyesh",
+  gender: "male",
+  pronouns: "he/him",
+  bio: "ML Engineer & Full-Stack Developer building AI-powered products, intelligent systems, and modern full-stack applications.",
+  flipSentences: [
+    "AI Engineer",
+    "Product Engineer",
+    "AI Systems Builder",
+    "Building AI-powered products",
+    "Trying to provide value & using code to do so.",
   ],
-};
+  address: "Mumbai · Pune, India",
+  phoneNumberB64: "", // Omitted
+  emailB64: "d29ya3NwYWNlLnByYWRueWVzaEBnbWFpbC5jb20=", // base64 for workspace.pradnyesh@gmail.com
+  website: "https://cal.com/pradnyesh",
+  jobTitle: "ML Engineer & Full-Stack Developer",
+  jobs: [
+    {
+      title: "ML Engineer & Full-Stack Developer",
+      company: "Independent & Hackathon Engineering",
+      website: "https://github.com/25Pradnyesh",
+      experienceId: "independent-builder",
+    },
+  ],
+  about: `- I’m Pradnyesh — an ML Engineer and Full-Stack Developer focused on building AI-powered products, autonomous systems, and robust web applications.
+- My work spans the intersection of machine learning, system design, and product engineering: translating complex models, APIs, and emergent ideas into shipped, reliable software.
+- From building rapid prototypes under hackathon constraints to architecting full-stack applications with Next.js, Python, and modern AI APIs, I care about clean engineering, pragmatic architecture, and visual precision.
+`,
+  avatar: "/pfp.jpeg",
+  avatarVariants: {
+    lightOff: "/pfp.jpeg",
+    lightOn: "/pfp.jpeg",
+    darkOff: "/pfp.jpeg",
+    darkOn: "/pfp.jpeg",
+  },
+  ogImage: "/pfp.jpeg",
+  timeZone: "Asia/Kolkata",
+  keywords: [
+    "Pradnyesh",
+    "ML Engineer",
+    "Full-Stack Developer",
+    "AI Engineer",
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "Machine Learning",
+  ],
+  dateCreated: "2024-01-01",
+}

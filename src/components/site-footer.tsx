@@ -1,33 +1,93 @@
-import React from "react";
-import Link from "next/link";
-import { USER } from "@/features/portfolio/data/user";
+import Link from "next/link"
+
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons"
+import { SOCIAL } from "@/features/portfolio/data/social-links"
 
 export function SiteFooter() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="max-w-screen overflow-x-clip px-2 pb-16">
-      <div className="screen-line-top mx-auto border-x border-border p-4 text-xs font-mono text-muted-foreground md:max-w-3xl">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-1">
-            <p className="text-foreground">
-              {USER.name} <span className="text-muted-foreground/60">—</span> {USER.role}
-            </p>
-            <p className="text-muted-foreground/80">{USER.location}</p>
-          </div>
+    <footer className="max-w-screen overflow-x-clip px-2">
+      <div className="mx-auto border-x border-line group-has-data-[slot=layout-wide]/layout:container md:max-w-3xl">
+        {/* ROW 1: Compact Attribution */}
+        <div className="screen-line-top flex min-h-[64px] items-center justify-center px-4 py-4 text-center font-mono text-xs text-muted-foreground sm:text-sm">
+          <p className="leading-relaxed">
+            Built by{" "}
+            <a
+              href={SOCIAL.x.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/90 link-underline transition-colors duration-150 hover:text-foreground"
+            >
+              Pradnyesh
+            </a>
+            . Inspired by / forked from{" "}
+            <a
+              href="https://chanhdai.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/90 link-underline transition-colors duration-150 hover:text-foreground"
+            >
+              chanhdai.com
+            </a>
+            .
+          </p>
+        </div>
 
-          <div className="flex flex-col gap-1 text-left sm:text-right">
-            <p className="text-muted-foreground/80">
-              © {currentYear} {USER.name}. All rights reserved.
-            </p>
-            <div className="flex items-center gap-3 sm:justify-end">
-              <Link href="#hero" className="transition-colors hover:text-foreground">
-                Back to top ↑
-              </Link>
-            </div>
-          </div>
+        {/* ROW 2: Compact Links & Brand Icons */}
+        <div className="screen-line-bottom flex min-h-[50px] items-center justify-center border-t border-line screen-line-bottom-border px-4 py-3">
+          <nav
+            aria-label="Footer links"
+            className="flex items-center gap-3.5 text-muted-foreground sm:gap-4.5"
+          >
+            <Link
+              href="/llms.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground sm:text-sm"
+            >
+              llms.txt
+            </Link>
+
+            <span className="h-3.5 w-px bg-line" aria-hidden />
+
+            <a
+              href={SOCIAL.x.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors duration-150 hover:text-foreground"
+              aria-label="X (formerly Twitter)"
+            >
+              <XIcon className="size-[18px]" />
+            </a>
+
+            <span className="h-3.5 w-px bg-line" aria-hidden />
+
+            <a
+              href={SOCIAL.github.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors duration-150 hover:text-foreground"
+              aria-label="GitHub"
+            >
+              <GitHubIcon className="size-[18px]" />
+            </a>
+
+            <span className="h-3.5 w-px bg-line" aria-hidden />
+
+            <a
+              href={SOCIAL.linkedin.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors duration-150 hover:text-foreground"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon className="size-[18px]" />
+            </a>
+          </nav>
         </div>
       </div>
+
+      <div className="h-(--fade-bottom-height)" />
+      <div className="pb-[env(safe-area-inset-bottom,0)]" />
     </footer>
-  );
+  )
 }

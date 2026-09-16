@@ -1,61 +1,62 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { portfolioData } from "@/data/portfolio"
 import {
-  CodeXml,
-  MapPin,
-  GraduationCap,
+  Calendar,
   Clock,
+  CodeXml,
+  GraduationCap,
   Hammer,
   Mail,
-  Calendar,
-} from "lucide-react";
-import { PixelPSLogo, VerifiedBadge } from "@/components/Icons";
-import RollingLabel from "@/components/RollingLabel";
-import { portfolioData } from "@/data/portfolio";
+  MapPin,
+} from "lucide-react"
+
+import { PixelPSLogo, VerifiedBadge } from "@/components/portfolio-icons"
+import RollingLabel from "@/components/RollingLabel"
 
 export default function Overview() {
-  const { personal } = portfolioData;
-  const [currentTime, setCurrentTime] = useState<string>("");
+  const { personal } = portfolioData
+  const [currentTime, setCurrentTime] = useState<string>("")
 
   useEffect(() => {
     const updateTime = () => {
-      const now = new Date();
+      const now = new Date()
       const istTime = now.toLocaleTimeString("en-GB", {
         timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
-      });
-      setCurrentTime(istTime);
-    };
+      })
+      setCurrentTime(istTime)
+    }
 
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="w-full">
       {/* 1. HERO / GRID AREA - Dot Grid, Centered Restrained Pixel "PS" Mark */}
-      <div className="select-none h-44 sm:h-52 border-x border-edge flex items-center justify-center text-[var(--foreground)] screen-line-before before:-top-px dot-grid relative">
+      <div className="border-edge screen-line-before relative flex h-44 items-center justify-center border-x dot-grid text-[var(--foreground)] select-none before:-top-px sm:h-52">
         <div className="relative inline-block opacity-95">
-          <PixelPSLogo className="h-14 w-auto sm:h-16 text-white" />
+          <PixelPSLogo className="h-14 w-auto text-white sm:h-16" />
         </div>
       </div>
 
       {/* 2. PROFILE ROW - Proportional Left PFP Column & Compact 3-Row Identity Block */}
-      <div className="screen-line-before grid grid-cols-1 sm:grid-cols-[135px_1fr] md:grid-cols-[145px_1fr] border-x border-b border-edge bg-[var(--background)]">
+      <div className="screen-line-before border-edge grid grid-cols-1 border-x border-b bg-[var(--background)] sm:grid-cols-[135px_1fr] md:grid-cols-[145px_1fr]">
         {/* Left Column: Narrow column with large PFP occupying most of the cell */}
-        <div className="border-b sm:border-b-0 sm:border-r border-edge flex items-center justify-center p-2 sm:p-2.5">
-          <div className="size-24 sm:size-[114px] md:size-[122px] rounded-full border border-zinc-800 bg-zinc-950 overflow-hidden select-none ring-1 ring-white/5 shadow-sm shrink-0">
+        <div className="border-edge flex items-center justify-center border-b p-2 sm:border-r sm:border-b-0 sm:p-2.5">
+          <div className="size-24 shrink-0 overflow-hidden rounded-full border border-zinc-800 bg-zinc-950 shadow-sm ring-1 ring-white/5 select-none sm:size-[114px] md:size-[122px]">
             <Image
               src={personal.profileImage}
               alt="Pradnyesh"
               width={130}
               height={130}
-              className="size-full rounded-full object-cover pfp-image"
+              className="pfp-image size-full rounded-full object-cover"
               style={{ filter: "none", opacity: 1 }}
               priority
             />
@@ -63,30 +64,30 @@ export default function Overview() {
         </div>
 
         {/* Right Column: Compact 3-Row Identity Block with internal structural grid dividers */}
-        <div className="flex flex-col justify-between min-w-0">
+        <div className="flex min-w-0 flex-col justify-between">
           {/* Row 1: Role / Eyebrow (smallest / muted) */}
-          <div className="px-3.5 sm:px-4 md:px-5 py-2 sm:py-2.5 border-b border-edge flex items-center">
-            <div className="font-mono text-xs sm:text-[13px] text-zinc-500 tracking-normal select-none">
+          <div className="border-edge flex items-center border-b px-3.5 py-2 sm:px-4 sm:py-2.5 md:px-5">
+            <div className="font-mono text-xs tracking-normal text-zinc-500 select-none sm:text-[13px]">
               AI Engineer &amp; Full-Stack Developer
             </div>
           </div>
 
           {/* Row 2: Dominant Name + Verified Badge + Status */}
-          <div className="px-3.5 sm:px-4 md:px-5 py-2.5 sm:py-3 border-b border-edge flex items-center">
+          <div className="border-edge flex items-center border-b px-3.5 py-2.5 sm:px-4 sm:py-3 md:px-5">
             <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-              <h1 className="text-2xl sm:text-3xl md:text-[30px] font-bold tracking-tight text-white flex items-center gap-2">
+              <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[30px]">
                 <span>Pradnyesh</span>
-                <VerifiedBadge className="size-4.5 sm:size-5 text-[#1D9BF0] shrink-0 inline-block align-middle" />
+                <VerifiedBadge className="inline-block size-4.5 shrink-0 align-middle text-[#1D9BF0] sm:size-5" />
               </h1>
-              <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-emerald-400 select-none tracking-wider ml-1 sm:ml-1.5">
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="ml-1 inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-wider text-emerald-400 select-none sm:ml-1.5 sm:text-xs">
+                <span className="size-1.5 shrink-0 animate-pulse rounded-full bg-emerald-400" />
                 BUILDING
               </span>
             </div>
           </div>
 
           {/* Row 3: Tagline (secondary) */}
-          <div className="px-3.5 sm:px-4 md:px-5 py-2 sm:py-2.5 flex items-center min-w-0">
+          <div className="flex min-w-0 items-center px-3.5 py-2 sm:px-4 sm:py-2.5 md:px-5">
             <RollingLabel />
           </div>
         </div>
@@ -95,44 +96,42 @@ export default function Overview() {
       {/* 3. INFORMATION / METADATA AREA - Unified Technical Profile Panel */}
       <section
         data-slot="panel"
-        className="screen-line-before border-x border-b border-edge bg-[var(--background)] px-5 sm:px-6 py-3 sm:py-3.5"
+        className="screen-line-before border-edge border-x border-b bg-[var(--background)] px-5 py-3 sm:px-6 sm:py-3.5"
       >
         <h2 className="sr-only">Overview &amp; Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 sm:gap-x-12 gap-y-2 sm:gap-y-2.5">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-2 sm:gap-x-12 sm:gap-y-2.5 md:grid-cols-2">
           {/* COLUMN 1 */}
           <div className="space-y-2 sm:space-y-2.5">
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <CodeXml className="size-3" strokeWidth={1.5} />
               </div>
-              <span className="text-zinc-200 font-medium truncate">
+              <span className="truncate font-medium text-zinc-200">
                 AI Engineer &amp; Full-Stack Developer
               </span>
             </div>
 
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <Hammer className="size-3" strokeWidth={1.5} />
               </div>
-              <span className="text-zinc-400 truncate">
-                Currently building
-              </span>
+              <span className="truncate text-zinc-400">Currently building</span>
             </div>
 
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <MapPin className="size-3" strokeWidth={1.5} />
               </div>
-              <span className="text-zinc-300 truncate">
+              <span className="truncate text-zinc-300">
                 Mumbai · Pune, India
               </span>
             </div>
 
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <GraduationCap className="size-3" strokeWidth={1.5} />
               </div>
-              <span className="text-zinc-400 truncate">
+              <span className="truncate text-zinc-400">
                 Savitribai Phule Pune University
               </span>
             </div>
@@ -140,30 +139,30 @@ export default function Overview() {
 
           {/* COLUMN 2 */}
           <div className="space-y-2 sm:space-y-2.5">
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <Clock className="size-3" strokeWidth={1.5} />
               </div>
-              <span className="text-zinc-200 truncate">
+              <span className="truncate text-zinc-200">
                 <span>{currentTime || "--:--"}</span>
-                <span className="text-zinc-600 ml-1">{"// IST"}</span>
+                <span className="ml-1 text-zinc-600">{"// IST"}</span>
               </span>
             </div>
 
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <Mail className="size-3" strokeWidth={1.5} />
               </div>
               <a
                 href={`mailto:${personal.email}`}
-                className="text-zinc-300 hover:text-white truncate transition-colors"
+                className="truncate text-zinc-300 transition-colors hover:text-white"
                 title={personal.email}
               >
                 {personal.email}
               </a>
             </div>
 
-            <div className="h-6 flex items-center gap-3 font-mono text-xs sm:text-[13px] min-w-0">
+            <div className="flex h-6 min-w-0 items-center gap-3 font-mono text-xs sm:text-[13px]">
               <div className="flex size-4 shrink-0 items-center justify-center rounded-[2px] bg-zinc-900/30 text-zinc-500">
                 <Calendar className="size-3" strokeWidth={1.5} />
               </div>
@@ -171,7 +170,7 @@ export default function Overview() {
                 href={personal.socials.cal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-300 hover:text-white truncate transition-colors"
+                className="truncate text-zinc-300 transition-colors hover:text-white"
               >
                 cal.com/pradnyesh
               </a>
@@ -180,5 +179,5 @@ export default function Overview() {
         </div>
       </section>
     </div>
-  );
+  )
 }

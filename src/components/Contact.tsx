@@ -1,29 +1,30 @@
-"use client";
+"use client"
 
-import { Mail, ArrowUpRight } from "lucide-react";
-import { CalIcon, ResumeIcon } from "@/components/Icons";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolio"
+import { ArrowUpRight, Mail } from "lucide-react"
+
+import { CalIcon, ResumeIcon } from "@/components/portfolio-icons"
 
 export default function Contact() {
-  const { personal, contact } = portfolioData;
+  const { personal, contact } = portfolioData
 
   return (
     <section
       id="contact"
       data-slot="panel"
-      className="screen-line-before screen-line-after border-x border-edge before:content-none after:content-none"
+      className="screen-line-before screen-line-after border-edge border-x before:content-none after:content-none"
     >
       {/* Section Header */}
-      <div className="border-b border-edge px-4 py-3">
+      <div className="border-edge border-b px-4 py-3">
         <h2 className="section-heading">Contact</h2>
       </div>
 
       {/* Content */}
-      <div className="border-b border-edge px-4 py-8 space-y-4">
-        <h3 className="text-xl sm:text-2xl font-medium tracking-tight text-[var(--foreground)]">
+      <div className="border-edge space-y-4 border-b px-4 py-8">
+        <h3 className="text-xl font-medium tracking-tight text-[var(--foreground)] sm:text-2xl">
           {contact.headline}
         </h3>
-        <p className="text-sm text-[var(--muted-foreground)] max-w-md leading-relaxed">
+        <p className="max-w-md text-sm leading-relaxed text-[var(--muted-foreground)]">
           {contact.prompt}
         </p>
 
@@ -31,7 +32,7 @@ export default function Contact() {
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <a
             href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono bg-[var(--foreground)] text-[var(--background)] font-medium hover:opacity-90 rounded-md transition-opacity"
+            className="inline-flex items-center gap-2 rounded-md bg-[var(--foreground)] px-4 py-2 font-mono text-xs font-medium text-[var(--background)] transition-opacity hover:opacity-90"
           >
             <Mail className="size-3.5" />
             Email me
@@ -42,7 +43,7 @@ export default function Contact() {
             href={contact.calUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono border border-edge bg-[var(--muted)]/40 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-md transition-colors"
+            className="border-edge inline-flex items-center gap-2 rounded-md border bg-[var(--muted)]/40 px-4 py-2 font-mono text-xs text-[var(--foreground)] transition-colors hover:bg-[var(--muted)]"
           >
             <CalIcon className="size-3.5" />
             Book a meeting
@@ -53,7 +54,7 @@ export default function Contact() {
             href={contact.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono border border-edge bg-[var(--muted)]/40 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-md transition-colors"
+            className="border-edge inline-flex items-center gap-2 rounded-md border bg-[var(--muted)]/40 px-4 py-2 font-mono text-xs text-[var(--foreground)] transition-colors hover:bg-[var(--muted)]"
           >
             <ResumeIcon className="size-3.5" />
             View Resume
@@ -62,5 +63,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }

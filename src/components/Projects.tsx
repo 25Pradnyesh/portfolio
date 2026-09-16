@@ -1,20 +1,21 @@
-"use client";
+"use client"
 
-import { ArrowUpRight } from "lucide-react";
-import { GithubIcon } from "@/components/Icons";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolio"
+import { ArrowUpRight } from "lucide-react"
+
+import { GithubIcon } from "@/components/portfolio-icons"
 
 export default function Projects() {
-  const { projects } = portfolioData;
+  const { projects } = portfolioData
 
   return (
     <section
       id="projects"
       data-slot="panel"
-      className="screen-line-before screen-line-after border-x border-edge before:content-none after:content-none"
+      className="screen-line-before screen-line-after border-edge border-x before:content-none after:content-none"
     >
       {/* Section Header */}
-      <div className="border-b border-edge px-4 py-3 flex items-center justify-between">
+      <div className="border-edge flex items-center justify-between border-b px-4 py-3">
         <h2 className="section-heading">Projects</h2>
         <span className="font-mono text-[10px] text-[var(--muted-foreground)] tabular-nums">
           ({projects.length})
@@ -22,34 +23,34 @@ export default function Projects() {
       </div>
 
       {/* Project List */}
-      <div className="border-b border-edge">
+      <div className="border-edge border-b">
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className="group px-4 py-4 border-b border-edge last:border-b-0 hover:bg-[var(--muted)]/30 transition-colors"
+            className="group border-edge border-b px-4 py-4 transition-colors last:border-b-0 hover:bg-[var(--muted)]/30"
           >
             <div className="flex items-start gap-3">
               {/* Index Number */}
-              <span className="font-mono text-[10px] text-[var(--muted-foreground)]/40 pt-0.5 shrink-0 w-6 tabular-nums">
+              <span className="w-6 shrink-0 pt-0.5 font-mono text-[10px] text-[var(--muted-foreground)]/40 tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </span>
 
               {/* Content */}
-              <div className="flex-1 min-w-0 space-y-2">
+              <div className="min-w-0 flex-1 space-y-2">
                 {/* Title + Period */}
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-sm font-medium text-[var(--foreground)] leading-tight">
+                  <h3 className="text-sm leading-tight font-medium text-[var(--foreground)]">
                     {project.title}
                   </h3>
                   {project.period && (
-                    <span className="font-mono text-[10px] text-[var(--muted-foreground)] shrink-0 pt-0.5 whitespace-nowrap tabular-nums">
+                    <span className="shrink-0 pt-0.5 font-mono text-[10px] whitespace-nowrap text-[var(--muted-foreground)] tabular-nums">
                       {project.period}
                     </span>
                   )}
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                <p className="text-sm leading-relaxed text-[var(--muted-foreground)]">
                   {project.description}
                 </p>
 
@@ -60,20 +61,20 @@ export default function Projects() {
 
                 {/* Achievement Badge */}
                 {project.achievement && (
-                  <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 font-mono text-[10px] text-emerald-500 font-medium">
+                  <div className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 font-mono text-[10px] font-medium text-emerald-500">
                     {project.achievement}
                   </div>
                 )}
 
                 {/* Links (shown on hover) */}
                 {(project.githubUrl || project.projectUrl) && (
-                  <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity pt-1">
+                  <div className="flex items-center gap-3 pt-1 opacity-0 transition-opacity group-hover:opacity-100">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]"
                       >
                         <GithubIcon className="size-3" />
                         Code
@@ -85,7 +86,7 @@ export default function Projects() {
                         href={project.projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]"
                       >
                         Live
                         <ArrowUpRight className="size-2.5" />
@@ -99,5 +100,5 @@ export default function Projects() {
         ))}
       </div>
     </section>
-  );
+  )
 }
